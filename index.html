@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOUREL - Voile de Luxe Swarovski | Collection Exclusive</title>
+    <meta name="description" content="Découvrez les voiles de luxe NOUREL ornés de cristaux Swarovski authentiques. Qualité premium, livraison gratuite.">
+    <script src="https://www.paypal.com/sdk/js?client-id=AWNMMTn0jbr4jzNwMMrl6DsBmtLhMdhRWif4rZ5u5ErHq_AVYFJQX5w1wSfVfCzEI51pjU1JkCvyIjD7&currency=EUR"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+        body.dark-mode { background: #0a0a0a; color: #e5e5e5; }
+        body.dark-mode .hero { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 50%, #1a1a1a 100%); }
+        body.dark-mode .about-section, body.dark-mode .products-section, body.dark-mode .testimonials-section { background: #0a0a0a; }
+        body.dark-mode .product-card, body.dark-mode .testimonial-card, body.dark-mode .cart-sidebar, body.dark-mode .quick-view-modal, body.dark-mode .welcome-popup { background: #1a1a1a; border-color: #2a2a2a; }
+        body.dark-mode nav { background: rgba(26, 26, 26, 0.95); border-bottom-color: rgba(201, 169, 97, 0.2); }
+        body.dark-mode .logo, body.dark-mode .nav-links a, body.dark-mode .about-text h2, body.dark-mode .product-name, body.dark-mode .testimonial-author, body.dark-mode .hero-content h1, body.dark-mode .section-header h2 { color: #e5e5e5; }
+        body.dark-mode .search-box input, body.dark-mode .welcome-popup input { background: #2a2a2a; border-color: #3a3a3a; color: #e5e5e5; }
+        body.dark-mode .testimonial-text, body.dark-mode .about-text p, body.dark-mode .hero-subtitle, body.dark-mode .hero-description { color: #999; }
+        body.dark-mode .theme-toggle, body.dark-mode .lang-selector, body.dark-mode .filter-btn { border-color: #3a3a3a; color: #e5e5e5; }
+        body.dark-mode .promo-banner { background: #1a1a1a; border-bottom-color: #c9a961; }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(201, 169, 97, 0.3); } 50% { box-shadow: 0 0 40px rgba(201, 169, 97, 0.6); } }
+        @keyframes shimmer { 0% { background-position: -1000px 0; } 100% { background-position: 1000px 0; } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes confetti { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; } }
+        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 50% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Countdown Timer */
+        .promo-banner {
+            background: linear-gradient(135deg, #c9a961 0%, #d4b574 100%);
+            color: white;
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #b89850;
+            animation: slideDown 0.5s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .promo-text { display: flex; align-items: center; gap: 8px; }
+        .countdown-timer { display: flex; gap: 15px; font-weight: 700; font-size: 14px; }
+        .countdown-item { display: flex; flex-direction: column; align-items: center; }
+        .countdown-number { font-size: 20px; background: rgba(255, 255, 255, 0.2); padding: 5px 10px; border-radius: 4px; min-width: 40px; }
+        .countdown-label { font-size: 9px; text-transform: uppercase; margin-top: 2px; }
+
+        /* Welcome Popup */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInUp 0.3s ease;
+        }
+        .popup-overlay.show { display: flex; }
+        .welcome-popup {
+            background: white;
+            max-width: 550px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.3);
+            animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+        }
+        .popup-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        .popup-close:hover { background: #c9a961; color: white; transform: rotate(90deg); }
+        .popup-header {
+            background: linear-gradient(135deg, #c9a961 0%, #d4b574 100%);
+            padding: 50px 40px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .popup-header::before {
+            content: '🎁';
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.1;
+            top: -20px;
+            right: -20px;
+            animation: float 3s ease-in-out infinite;
+        }
+        .popup-header h2 { font-size: 32px; font-weight: 700; margin-bottom: 10px; }
+        .popup-header p { font-size: 18px; opacity: 0.95; }
+        .popup-discount { font-size: 48px; font-weight: 900; margin: 15px 0; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); }
+        .popup-body { padding: 40px; }
+        .popup-body p { text-align: center; color: #666; margin-bottom: 25px; font-size: 14px; }
+        .popup-form { display: flex; flex-direction: column; gap: 15px; }
+        .popup-input {
+            padding: 16px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        .popup-input:focus { outline: none; border-color: #c9a961; box-shadow: 0 0 0 4px rgba(201, 169, 97, 0.1); }
+        .popup-submit {
+            padding: 18px;
+            background: linear-gradient(135deg, #c9a961 0%, #d4b574 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        .popup-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201, 169, 97, 0.4); }
+        .popup-footer { text-align: center; padding: 0 40px 30px; font-size: 11px; color: #999; }
+
+        /* Quick View Modal */
+        .quick-view-modal {
+            background: white;
+            max-width: 900px;
+            width: 90%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.3);
+            animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .quick-view-image {
+            background-size: cover;
+            background-position: center;
+            min-height: 400px;
+            position: relative;
+        }
+        .quick-view-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+        }
+        .quick-view-content { padding: 50px 40px; }
+        .quick-view-content h2 { font-size: 28px; font-weight: 700; margin-bottom: 15px; color: #1a1a1a; letter-spacing: 1px; }
+        .quick-view-price { font-size: 32px; color: #c9a961; font-weight: 700; margin-bottom: 20px; }
+        .quick-view-description { font-size: 15px; color: #666; line-height: 1.8; margin-bottom: 30px; }
+        .quick-view-features { list-style: none; margin-bottom: 30px; }
+        .quick-view-features li { padding: 10px 0; font-size: 14px; color: #666; display: flex; align-items: center; gap: 10px; }
+        .quick-view-features li i { color: #c9a961; font-size: 16px; }
+        .quick-view-actions { display: flex; gap: 15px; }
+        .quick-view-add { flex: 1; padding: 16px; background: #c9a961; color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
+        .quick-view-add:hover { background: #1a1a1a; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201, 169, 97, 0.4); }
+
+        /* Floating Add to Cart */
+        .floating-add-cart {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #c9a961 0%, #d4b574 100%);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 50px;
+            box-shadow: 0 10px 40px rgba(201, 169, 97, 0.5);
+            cursor: pointer;
+            z-index: 999;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            animation: slideInRight 0.5s ease;
+            transition: all 0.3s ease;
+        }
+        .floating-add-cart.show { display: flex; }
+        .floating-add-cart:hover { transform: translateY(-5px); box-shadow: 0 15px 50px rgba(201, 169, 97, 0.6); }
+
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 999;
+        }
+        .chat-bubble {
+            background: linear-gradient(135deg, #c9a961 0%, #d4b574 100%);
+            color: white;
+            padding: 18px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 40px rgba(201, 169, 97, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+        .chat-bubble:hover { transform: scale(1.05); box-shadow: 0 15px 50px rgba(201, 169, 97, 0.6); }
+        .chat-bubble i { font-size: 20px; }
+        .chat-pulse {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 15px;
+            height: 15px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        .chat-window {
+            position: absolute;
+            bottom: 80px;
+            left: 0;
+            width: 350px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            animation: popIn 0.3s ease;
+        }
+        .chat-window.show { display: flex; }
+        .chat-header {
+            background: linear-gradient(135deg, #c9a961 0%, #d4b574 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 20px 20px 0 0;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-close { background: none; border: none; color: white; font-size: 20px; cursor: pointer; }
+        .chat-messages {
+            padding: 20px;
+            height: 250px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .chat-message {
+            background: #f5f5f5;
+            padding: 12px 16px;
+            border-radius: 12px;
+            max-width: 80%;
+            font-size: 13px;
+            animation: fadeInUp 0.3s ease;
+        }
+        .chat-typing {
+            display: flex;
+            gap: 5px;
+            padding: 10px;
+        }
+        .chat-typing span {
+            width: 8px;
+            height: 8px;
+            background: #c9a961;
+            border-radius: 50%;
+            animation: blink 1.4s infinite;
+        }
+        .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+        .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+        /* Progress Bar for Free Shipping */
+        .shipping-progress {
+            background: #f5f5f5;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+        .progress-text { font-size: 13px; color: #666; margin-bottom: 10px; text-align: center; }
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #c9a961 0%, #d4b574 100%);
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            z-index: 10001;
+            animation: confetti 3s linear forwards;
+            pointer-events: none;
+        }
+
+        /* Parallax Effect */
+        .parallax-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Particles for Hero */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+        }
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #c9a961;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 25px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        .logo { font-size: 24px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: #1a1a1a; animation: slideInLeft 0.6s ease; }
+        .nav-links { display: flex; gap: 50px; list-style: none; }
+        .nav-links a { color: #1a1a1a; text-decoration: none; transition: all 0.3s ease; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; font-weight: 500; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: #c9a961; transition: width 0.3s ease; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-right { display: flex; gap: 20px; align-items: center; }
+        .theme-toggle, .lang-selector { background: transparent; border: 1px solid #e0e0e0; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 12px; transition: all 0.3s ease; color: #1a1a1a; font-weight: 600; letter-spacing: 0.5px; }
+        .theme-toggle:hover, .lang-selector:hover { border-color: #c9a961; background: rgba(201, 169, 97, 0.1); }
+        .cart-badge, .wishlist-badge { position: relative; cursor: pointer; font-size: 18px; transition: all 0.3s ease; }
+        .cart-badge:hover, .wishlist-badge:hover { transform: scale(1.1); }
+        .badge-count { position: absolute; top: -8px; right: -8px; background: #c9a961; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; animation: pulse 1s infinite; }
+
+        .cart-sidebar {
+            position: fixed;
+            right: -450px;
+            top: 0;
+            width: 450px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            flex-direction: column;
+        }
+        .cart-sidebar.open { right: 0; }
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            display: none;
+            backdrop-filter: blur(3px);
+        }
+        .cart-overlay.show { display: block; }
+        .cart-header {
+            padding: 30px;
+            border-bottom: 2px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #f9f7f4 0%, #ffffff 100%);
+        }
+        .cart-header h2 { font-size: 22px; font-weight: 700; letter-spacing: 2px; color: #1a1a1a; }
+        .close-cart { background: transparent; border: none; font-size: 24px; cursor: pointer; color: #999; transition: all 0.3s ease; }
+        .close-cart:hover { color: #c9a961; transform: rotate(90deg); }
+        .cart-items-container { flex: 1; overflow-y: auto; padding: 20px 30px; }
+        .cart-item-card {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
+            animation: fadeInUp 0.3s ease;
+        }
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #e8dcc8 0%, #f0ead8 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+        .cart-item-details { flex: 1; }
+        .cart-item-name { font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px; }
+        .cart-item-price { font-size: 16px; color: #c9a961; font-weight: 700; }
+        .cart-item-remove { background: transparent; border: 1px solid #e5e5e5; padding: 6px 12px; cursor: pointer; font-size: 11px; color: #999; transition: all 0.3s ease; border-radius: 4px; font-weight: 600; margin-top: 10px; }
+        .cart-item-remove:hover { border-color: #ff6b6b; color: #ff6b6b; }
+        .cart-empty { text-align: center; padding: 80px 20px; color: #999; }
+        .cart-empty i { font-size: 64px; margin-bottom: 20px; opacity: 0.3; }
+        .cart-footer {
+            padding: 30px;
+            border-top: 2px solid #f0f0f0;
+            background: #fafafa;
+        }
+        .cart-total { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 18px; font-weight: 700; }
+        .cart-total-label { color: #1a1a1a; letter-spacing: 1px; }
+        .cart-total-amount { color: #c9a961; font-size: 24px; }
+        .checkout-btn {
+            width: 100%;
+            padding: 16px;
+            background: #c9a961;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        .checkout-btn:hover { background: #1a1a1a; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201, 169, 97, 0.4); }
+        .continue-shopping { width: 100%; padding: 12px; background: transparent; color: #666; border: 1px solid #e0e0e0; border-radius: 8px; font-weight: 600; font-size: 12px; cursor: pointer; transition: all 0.3s ease; margin-top: 10px; }
+        .continue-shopping:hover { border-color: #c9a961; color: #c9a961; }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f9f7f4 0%, #fffbf7 50%, #f5f0eb 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before { content: ''; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(201, 169, 97, 0.08) 0%, transparent 70%); border-radius: 50%; top: -100px; right: -100px; animation: glow 4s ease-in-out infinite; }
+        .hero-content { text-align: center; max-width: 800px; z-index: 2; animation: fadeInUp 0.8s ease; }
+        .hero-content h1 { font-size: 72px; font-weight: 300; letter-spacing: 6px; margin-bottom: 20px; color: #1a1a1a; }
+        .hero-subtitle { font-size: 18px; color: #666; font-weight: 300; letter-spacing: 3px; margin-bottom: 15px; text-transform: uppercase; }
+        .hero-description { font-size: 14px; color: #999; margin-bottom: 50px; font-weight: 300; letter-spacing: 1px; }
+        .cta-button { display: inline-block; padding: 16px 50px; background: #1a1a1a; color: #ffffff; text-decoration: none; border: 2px solid #1a1a1a; font-weight: 600; font-size: 12px; cursor: pointer; letter-spacing: 2px; text-transform: uppercase; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .cta-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: #c9a961; transition: left 0.4s ease; z-index: -1; }
+        .cta-button:hover::before { left: 0; }
+        .cta-button:hover { color: #ffffff; border-color: #c9a961; }
+        .cta-button.secondary { background: #c9a961; border-color: #c9a961; color: #ffffff; }
+        .cta-button.secondary:hover { background: #1a1a1a; border-color: #1a1a1a; }
+
+        .divider { height: 1px; background: linear-gradient(90deg, transparent, #e5e5e5, transparent); margin: 80px 0; }
+        .trust-badges { display: flex; justify-content: center; gap: 60px; padding: 50px 80px; background: #fafafa; flex-wrap: wrap; }
+        .trust-badge { text-align: center; transition: transform 0.3s ease; }
+        .trust-badge:hover { transform: translateY(-5px); }
+        .trust-badge i { font-size: 32px; color: #c9a961; margin-bottom: 10px; }
+        .trust-badge p { font-size: 12px; color: #666; font-weight: 600; letter-spacing: 1px; }
+
+        .about-section { padding: 120px 80px; background: #ffffff; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-text { animation: slideInLeft 0.8s ease; }
+        .about-text h2 { font-size: 48px; font-weight: 300; margin-bottom: 30px; color: #1a1a1a; letter-spacing: 2px; }
+        .about-text p { font-size: 15px; line-height: 1.9; color: #666; margin-bottom: 30px; font-weight: 300; }
+        .about-image { 
+            height: 550px; 
+            background: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=550&fit=crop') center/cover; 
+            border-radius: 2px; 
+            animation: fadeInUp 0.8s ease 0.2s both; 
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .about-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(201, 169, 97, 0.3) 0%, rgba(26, 26, 26, 0.3) 100%);
+        }
+
+        .products-section { padding: 140px 80px; background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%); }
+        .section-header { text-align: center; margin-bottom: 60px; animation: fadeInUp 0.8s ease; }
+        .section-header h2 { font-size: 52px; font-weight: 300; margin-bottom: 15px; color: #1a1a1a; letter-spacing: 2px; }
+        .section-header p { font-size: 13px; color: #c9a961; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
+        .filter-search-bar { display: flex; gap: 20px; margin-bottom: 50px; flex-wrap: wrap; justify-content: center; align-items: center; }
+        .search-box { flex: 1; max-width: 400px; position: relative; }
+        .search-box input { width: 100%; padding: 14px 45px 14px 20px; border: 1px solid #e0e0e0; border-radius: 30px; font-size: 14px; transition: all 0.3s ease; font-family: 'Poppins', sans-serif; }
+        .search-box input:focus { outline: none; border-color: #c9a961; box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.1); }
+        .search-icon { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: #999; }
+        .filter-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+        .filter-btn { padding: 10px 24px; background: transparent; border: 1px solid #e0e0e0; border-radius: 20px; cursor: pointer; font-size: 12px; transition: all 0.3s ease; color: #666; font-weight: 600; letter-spacing: 0.5px; }
+        .filter-btn:hover, .filter-btn.active { border-color: #c9a961; background: #c9a961; color: #ffffff; }
+
+        .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 45px; }
+        .product-card { background: #ffffff; transition: all 0.5s ease; border: 1px solid #f0f0f0; animation: fadeInUp 0.6s ease; cursor: pointer; position: relative; overflow: hidden; }
+        .product-card:hover { box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12); transform: translateY(-8px); }
+        
+        .product-badges { position: absolute; top: 15px; left: 15px; z-index: 10; display: flex; flex-direction: column; gap: 8px; }
+        .product-badge { padding: 6px 12px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+        .badge-bestseller { background: #c9a961; color: white; }
+        .badge-limited { background: #ff6b6b; color: white; animation: pulse 2s infinite; }
+        .badge-stock { background: #10b981; color: white; }
+        
+        .wishlist-icon { position: absolute; top: 15px; right: 15px; background: rgba(255, 255, 255, 0.9); border: none; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; z-index: 10; font-size: 18px; }
+        .wishlist-icon:hover { transform: scale(1.1); background: #ffffff; }
+        .wishlist-icon.active { color: #ff6b6b; }
+        
+        .product-image { width: 100%; height: 380px; background: linear-gradient(135deg, #e8dcc8 0%, #f0ead8 100%); display: flex; align-items: center; justify-content: center; font-size: 90px; overflow: hidden; position: relative; background-size: cover; background-position: center; }
+        .product-image::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent); animation: shimmer 3s infinite; }
+        .product-info { padding: 40px 30px; }
+        .product-name { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: #1a1a1a; letter-spacing: 1.5px; text-transform: uppercase; }
+        .product-description { color: #888; margin-bottom: 25px; font-size: 13px; line-height: 1.7; font-weight: 300; }
+        .product-price { font-size: 20px; font-weight: 700; color: #c9a961; margin-bottom: 25px; letter-spacing: 1px; }
+        .product-stock { font-size: 12px; color: #ff6b6b; font-weight: 600; margin-bottom: 15px; animation: pulse 1.5s infinite; }
+        .add-to-cart { width: 100%; padding: 14px; background: #1a1a1a; color: #ffffff; border: 2px solid #1a1a1a; border-radius: 2px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; position: relative; overflow: hidden; }
+        .add-to-cart::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: #c9a961; transition: left 0.3s ease; z-index: -1; }
+        .add-to-cart:hover::before { left: 0; }
+        .add-to-cart:hover { color: #ffffff; border-color: #c9a961; }
+
+        .social-proof {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: white;
+            padding: 20px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 9998;
+            animation: slideInLeft 0.5s ease;
+            max-width: 350px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .social-proof.show { opacity: 1; pointer-events: all; }
+        .social-proof-avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #c9a961 0%, #d4b574 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 700; }
+        .social-proof-text { flex: 1; }
+        .social-proof-name { font-weight: 600; font-size: 13px; color: #1a1a1a; margin-bottom: 4px; }
+        .social-proof-action { font-size: 12px; color: #666; }
+        .social-proof-time { font-size: 11px; color: #999; margin-top: 4px; }
+
+        .testimonials-section { padding: 120px 80px; background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%); }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+        .testimonial-card { background: #ffffff; padding: 40px; border-radius: 2px; border: 1px solid #f0f0f0; animation: fadeInUp 0.6s ease; transition: all 0.3s ease; }
+        .testimonial-card:hover { box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1); transform: translateY(-5px); }
+        .testimonial-stars { color: #c9a961; font-size: 18px; margin-bottom: 20px; }
+        .testimonial-text { font-size: 14px; line-height: 1.8; color: #666; margin-bottom: 25px; font-style: italic; }
+        .testimonial-author { font-weight: 600; color: #1a1a1a; font-size: 13px; letter-spacing: 1px; }
+
+        .features-section { padding: 100px 80px; background: #1a1a1a; }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; }
+        .feature { text-align: center; animation: fadeInUp 0.8s ease; }
+        .feature-icon { font-size: 52px; margin-bottom: 25px; display: inline-block; }
+        .feature h3 { font-size: 16px; font-weight: 700; margin-bottom: 15px; color: #ffffff; letter-spacing: 1.5px; text-transform: uppercase; }
+        .feature p { font-size: 13px; color: #999; line-height: 1.8; font-weight: 300; }
+
+        .newsletter-section { padding: 80px; background: #c9a961; text-align: center; }
+        .newsletter-title { font-size: 36px; font-weight: 300; color: #ffffff; margin-bottom: 15px; letter-spacing: 2px; }
+        .newsletter-subtitle { font-size: 14px; color: rgba(255, 255, 255, 0.9); margin-bottom: 40px; letter-spacing: 1px; }
+        .newsletter-form { max-width: 500px; margin: 0 auto; display: flex; gap: 15px; }
+        .newsletter-input { flex: 1; padding: 16px 24px; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 30px; font-size: 14px; background: rgba(255, 255, 255, 0.1); color: #ffffff; transition: all 0.3s ease; }
+        .newsletter-input::placeholder { color: rgba(255, 255, 255, 0.7); }
+        .newsletter-input:focus { outline: none; border-color: #ffffff; background: rgba(255, 255, 255, 0.2); }
+        .newsletter-btn { padding: 16px 40px; background: #1a1a1a; color: #ffffff; border: none; border-radius: 30px; font-weight: 600; font-size: 12px; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; }
+        .newsletter-btn:hover { background: #ffffff; color: #c9a961; transform: translateY(-2px); }
+
+        .toast { position: fixed; bottom: 30px; right: 30px; background: #1a1a1a; color: #ffffff; padding: 20px 30px; border-radius: 8px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); z-index: 10000; animation: slideInRight 0.4s ease; display: flex; align-items: center; gap: 15px; max-width: 350px; }
+        .toast.success { background: #10b981; }
+        .toast.error { background: #ef4444; }
+        .toast-icon { font-size: 24px; }
+        .toast-message { font-size: 14px; line-height: 1.5; }
+
+        footer { background: #1a1a1a; color: #ffffff; padding: 100px 80px; }
+        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 50px; margin-bottom: 80px; }
+        .footer-col h4 { font-size: 13px; font-weight: 700; margin-bottom: 25px; letter-spacing: 1.5px; text-transform: uppercase; color: #ffffff; }
+        .footer-col p, .footer-col a { font-size: 13px; color: #999; margin-bottom: 14px; text-decoration: none; transition: all 0.3s ease; }
+        .footer-col a:hover { color: #c9a961; }
+        .footer-bottom { border-top: 1px solid #333; padding-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #666; }
+
+        @media (max-width: 1024px) {
+            nav { padding: 20px 40px; }
+            .products-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+            .about-section { grid-template-columns: 1fr; padding: 100px 40px; gap: 50px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: repeat(2, 1fr); }
+            .cart-sidebar, .quick-view-modal { width: 380px; right: -380px; }
+        }
+        @media (max-width: 768px) {
+            .products-grid, .testimonials-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 48px; }
+            nav { padding: 15px 20px; }
+            .nav-links { gap: 15px; font-size: 11px; }
+            .about-section, .products-section, .features-section, .testimonials-section { padding: 80px 20px; }
+            .footer-content { grid-template-columns: 1fr; }
+            .newsletter-form { flex-direction: column; }
+            .cart-sidebar, .quick-view-modal { width: 100%; right: -100%; }
+            .trust-badges { gap: 30px; }
+            .social-proof, .chat-widget { left: 20px; right: 20px; max-width: calc(100% - 40px); }
+            .floating-add-cart { bottom: 20px; right: 20px; }
+            .countdown-timer { font-size: 12px; }
+            .countdown-number { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Promo Banner with Countdown -->
+    <div class="promo-banner">
+        <div class="promo-text">
+            <i class="fas fa-gift"></i> OFFRE SPÉCIALE : -15% sur votre 1ère commande avec le code <strong>NOUREL15</strong>
+        </div>
+        <div class="countdown-timer">
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Heures</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Secondes</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Welcome Popup -->
+    <div class="popup-overlay" id="welcome-popup">
+        <div class="welcome-popup">
+            <button class="popup-close" onclick="closeWelcomePopup()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="popup-header">
+                <h2>Bienvenue chez NOUREL !</h2>
+                <p>Votre élégance commence ici</p>
+                <div class="popup-discount">-15%</div>
+                <p>sur votre première commande</p>
+            </div>
+            <div class="popup-body">
+                <p>Inscrivez-vous et recevez immédiatement votre code promo exclusif</p>
+                <form class="popup-form" onsubmit="submitWelcomePopup(event)">
+                    <input type="email" class="popup-input" placeholder="Votre adresse email" required>
+                    <button type="submit" class="popup-submit">
+                        <i class="fas fa-gift"></i> Obtenir mon Code Promo
+                    </button>
+                </form>
+            </div>
+            <div class="popup-footer">
+                En vous inscrivant, vous acceptez de recevoir nos offres exclusives
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="popup-overlay" id="quick-view-overlay">
+        <div class="quick-view-modal">
+            <button class="popup-close" onclick="closeQuickView()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="quick-view-image" id="qv-image"></div>
+            <div class="quick-view-content">
+                <h2 id="qv-name"></h2>
+                <div class="quick-view-price" id="qv-price"></div>
+                <p class="quick-view-description" id="qv-description"></p>
+                <ul class="quick-view-features">
+                    <li><i class="fas fa-gem"></i> Cristaux Swarovski authentiques</li>
+                    <li><i class="fas fa-certificate"></i> Certificat d'authenticité inclus</li>
+                    <li><i class="fas fa-truck"></i> Livraison gratuite et rapide</li>
+                    <li><i class="fas fa-shield-alt"></i> Garantie satisfait ou remboursé 30 jours</li>
+                </ul>
+                <div class="quick-view-actions">
+                    <button class="quick-view-add" onclick="addFromQuickView()">
+                        <i class="fas fa-shopping-cart"></i> Ajouter au Panier
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">NOUREL</div>
+        <ul class="nav-links">
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="#testimonials">Avis</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="lang-selector" onclick="changeLanguage()">
+                <i class="fas fa-globe"></i> <span id="current-lang">FR</span>
+            </button>
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+            <div class="wishlist-badge" onclick="showToast('Wishlist feature coming soon!', 'success')">
+                <i class="fas fa-heart"></i>
+                <span class="badge-count" id="wishlist-count" style="display: none;">0</span>
+            </div>
+            <div class="cart-badge" onclick="toggleCart()">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="badge-count" id="cart-count" style="display: none;">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-bag"></i> Mon Panier</h2>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items-container" id="cart-items-sidebar">
+            <div class="cart-empty">
+                <i class="fas fa-shopping-bag"></i>
+                <p>Votre panier est vide</p>
+            </div>
+        </div>
+        <div class="cart-footer" id="cart-footer" style="display: none;">
+            <div class="shipping-progress">
+                <div class="progress-text" id="progress-text"></div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+            </div>
+            <div class="cart-total">
+                <span class="cart-total-label">Total</span>
+                <span class="cart-total-amount" id="cart-total-amount">0,00 €</span>
+            </div>
+            <div id="paypal-button-container" style="margin-top: 20px;"></div>
+            <button class="continue-shopping" onclick="toggleCart()">
+                Continuer mes Achats
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating Add to Cart -->
+    <div class="floating-add-cart" id="floating-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Ajouter au Panier</span>
+    </div>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-bubble" onclick="toggleChat()">
+            <div class="chat-pulse"></div>
+            <i class="fas fa-comments"></i>
+            <span>Besoin d'aide ?</span>
+        </div>
+        <div class="chat-window" id="chat-window">
+            <div class="chat-header">
+                <span>💬 Chat NOUREL</span>
+                <button class="chat-close" onclick="toggleChat()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages">
+                <div class="chat-message">
+                    Bonjour ! 👋 Bienvenue chez NOUREL. Comment puis-je vous aider aujourd'hui ?
+                </div>
+                <div class="chat-message" style="margin-top: 10px;">
+                    Je suis disponible pour répondre à toutes vos questions sur nos voiles de luxe !
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Proof Notification -->
+    <div class="social-proof" id="social-proof">
+        <div class="social-proof-avatar">S</div>
+        <div class="social-proof-text">
+            <div class="social-proof-name">Sarah M.</div>
+            <div class="social-proof-action">vient d'acheter <strong>Voile Étoile</strong></div>
+            <div class="social-proof-time"><i class="fas fa-clock"></i> Il y a 3 minutes</div>
+        </div>
+    </div>
+
+    <!-- Hero Section with Particles -->
+    <section class="hero">
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <h1>NOUREL</h1>
+            <p class="hero-subtitle">Luxe & Élégance</p>
+            <p class="hero-description">Collection exclusive de voiles ornées de cristaux Swarovski authentiques</p>
+            <button class="cta-button secondary" onclick="document.getElementById('collections').scrollIntoView({behavior: 'smooth'})">
+                Découvrir la Collection
+            </button>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <div class="trust-badges">
+        <div class="trust-badge">
+            <i class="fas fa-gem"></i>
+            <p>CRISTAUX SWAROVSKI</p>
+        </div>
+        <div class="trust-badge">
+            <i class="fas fa-shipping-fast"></i>
+            <p>LIVRAISON GRATUITE</p>
+        </div>
+        <div class="trust-badge">
+            <i class="fas fa-shield-alt"></i>
+            <p>PAIEMENT SÉCURISÉ</p>
+        </div>
+        <div class="trust-badge">
+            <i class="fas fa-undo"></i>
+            <p>RETOUR 30 JOURS</p>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-text">
+            <h2>Notre Histoire</h2>
+            <p>Nourel est née d'une passion pour l'élégance intemporelle et la beauté raffinée. Chaque création est le fruit d'un savoir-faire artisanal minutieux.</p>
+            <p>Nous sélectionnons les plus beaux matériaux et les cristaux Swarovski de qualité supérieure pour créer des voiles qui transcendent le temps.</p>
+            <p>Véritables œuvres d'art, nos voiles incarnent le luxe, la sophistication et l'intemporalité.</p>
+            <button class="cta-button">En Savoir Plus</button>
+        </div>
+        <div class="about-image"></div>
+    </section>
+
+    <!-- Collections -->
+    <section class="products-section" id="collections">
+        <div class="section-header">
+            <p>Collection Exclusive</p>
+            <h2>Nos Créations</h2>
+        </div>
+
+        <div class="filter-search-bar">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Rechercher un voile..." oninput="filterProducts()">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterByPrice('all')">Tous</button>
+                <button class="filter-btn" onclick="filterByPrice('low')">- 150€</button>
+                <button class="filter-btn" onclick="filterByPrice('mid')">150€ - 170€</button>
+                <button class="filter-btn" onclick="filterByPrice('high')">+ 170€</button>
+            </div>
+        </div>
+
+        <div class="products-grid" id="products-grid"></div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="section-header">
+            <p>Avis Clients</p>
+            <h2>Ce qu'ils disent</h2>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Une qualité exceptionnelle ! Le voile que j'ai commandé a dépassé toutes mes attentes. Les cristaux Swarovski brillent magnifiquement."</p>
+                <p class="testimonial-author">— Sarah M.</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Service client irréprochable et livraison rapide. Le voile est encore plus beau en réalité. Je recommande vivement NOUREL !"</p>
+                <p class="testimonial-author">— Amina K.</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Un investissement qui en vaut la peine. La finition est parfaite et l'élégance incomparable. Merci NOUREL pour ce chef-d'œuvre !"</p>
+                <p class="testimonial-author">— Fatima L.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section">
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">✓</div>
+                <h3>Qualité Premium</h3>
+                <p>Matériaux haut de gamme sélectionnés pour leur durabilité et leur beauté intemporelle.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🚚</div>
+                <h3>Livraison Gratuite</h3>
+                <p>Livraison express dans un emballage de prestige à toutes vos commandes.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🛡️</div>
+                <h3>Garantie 100%</h3>
+                <p>Chaque pièce garantie authentique avec certificat d'authenticité inclus.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <h2 class="newsletter-title">Restez Informé</h2>
+        <p class="newsletter-subtitle">Inscrivez-vous pour recevoir nos nouveautés et offres exclusives</p>
+        <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+            <input type="email" class="newsletter-input" placeholder="Votre email" required>
+            <button type="submit" class="newsletter-btn">S'inscrire</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>À Propos de NOUREL</h4>
+                <p>Découvrez une sélection exclusive de voiles de luxe ornées de cristaux Swarovski authentiques.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Collections</h4>
+                <a href="#collections">Voiles Exclusives</a>
+                <a href="#collections">Éditions Limitées</a>
+                <a href="#collections">Nouvelles Arrivées</a>
+            </div>
+            <div class="footer-col">
+                <h4>Service Client</h4>
+                <a href="#">Politique de Retour</a>
+                <a href="#">Guide de Livraison</a>
+                <a href="#">FAQ & Support</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>Email: hello@nourel.com</p>
+                <p>Tél: +33 (0)1 23 45 67 89</p>
+                <p>Instagram: @nourel_official</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 NOUREL - Collection Exclusive. Tous droits réservés.</p>
+            <div>
+                <a href="#">Mentions Légales</a>
+                <a href="#" style="margin-left: 20px;">Politique de Confidentialité</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLang = 'fr';
+        let cart = [];
+        let cartTotal = 0;
+        let wishlist = [];
+        let currentQuickViewProduct = null;
+        const FREE_SHIPPING_THRESHOLD = 200;
+
+        const products = [
+            { name: "Voile Étoile", price: 149, img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=380&fit=crop", stock: 5, badge: "bestseller" },
+            { name: "Voile Diamant", price: 189, img: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&h=380&fit=crop", stock: 3, badge: "limited" },
+            { name: "Voile Royale", price: 169, img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=380&fit=crop", stock: 8, badge: "bestseller" },
+            { name: "Voile Jardin", price: 145, img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=380&fit=crop", stock: 6, badge: null },
+            { name: "Voile Dentelle", price: 155, img: "https://images.unsplash.com/photo-1594552072238-52fd5319d4c0?w=400&h=380&fit=crop", stock: 4, badge: "limited" },
+            { name: "Voile Prestige", price: 175, img: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400&h=380&fit=crop", stock: 2, badge: "limited" }
+        ];
+
+        const descriptions = [
+            "Voile de gaze fine ornée de cristaux Swarovski en motif étoilé. Légèreté et scintillement garantis.",
+            "Édition limitée avec cristaux authentiques de qualité supérieure. Un incontournable pour vos plus beaux jours.",
+            "Pièce maîtresse de notre collection avec cristaux multicolores. L'élégance à l'état pur.",
+            "Motif floral délicat en strass rose et or. Pour un look féminin et raffiné.",
+            "Dentelle fine avec cristaux délicatement intégrés. Romantique et sophistiqué.",
+            "Collection signature avec cristaux premium écru et or. Le summum du luxe."
+        ];
+
+        // Countdown Timer
+        function startCountdown() {
+            const endTime = new Date().getTime() + (24 * 60 * 60 * 1000); // 24 hours
+            
+            setInterval(() => {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+                
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }, 1000);
+        }
+
+        // Create Particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Welcome Popup
+        function showWelcomePopup() {
+            setTimeout(() => {
+                document.getElementById('welcome-popup').classList.add('show');
+            }, 3000);
+        }
+
+        function closeWelcomePopup() {
+            document.getElementById('welcome-popup').classList.remove('show');
+        }
+
+        function submitWelcomePopup(e) {
+            e.preventDefault();
+            const email = e.target.querySelector('input').value;
+            showToast(`Code promo NOUREL15 envoyé à ${email} !`, 'success');
+            createConfetti();
+            closeWelcomePopup();
+        }
+
+        // Quick View
+        function openQuickView(product, description) {
+            currentQuickViewProduct = product;
+            document.getElementById('qv-image').style.backgroundImage = `url('${product.img}')`;
+            document.getElementById('qv-name').textContent = product.name;
+            document.getElementById('qv-price').textContent = product.price + ',00 €';
+            document.getElementById('qv-description').textContent = description;
+            document.getElementById('quick-view-overlay').classList.add('show');
+        }
+
+        function closeQuickView() {
+            document.getElementById('quick-view-overlay').classList.remove('show');
+        }
+
+        function addFromQuickView() {
+            if (currentQuickViewProduct) {
+                addToCart(currentQuickViewProduct.name, currentQuickViewProduct.price, currentQuickViewProduct.img);
+                closeQuickView();
+            }
+        }
+
+        // Chat
+        function toggleChat() {
+            const chatWindow = document.getElementById('chat-window');
+            chatWindow.classList.toggle('show');
+        }
+
+        // Confetti Effect
+        function createConfetti() {
+            const colors = ['#c9a961', '#d4b574', '#ff6b6b', '#10b981'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        // Update Shipping Progress
+        function updateShippingProgress() {
+            const remaining = FREE_SHIPPING_THRESHOLD - cartTotal;
+            const progressPercent = Math.min((cartTotal / FREE_SHIPPING_THRESHOLD) * 100, 100);
+            
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            
+            if (progressBar && progressText) {
+                progressBar.style.width = progressPercent + '%';
+                
+                if (remaining > 0) {
+                    progressText.innerHTML = `<i class="fas fa-truck"></i> Plus que <strong>${remaining.toFixed(2)}€</strong> pour la livraison gratuite !`;
+                } else {
+                    progressText.innerHTML = `<i class="fas fa-check-circle"></i> <strong>Félicitations !</strong> Vous bénéficiez de la livraison gratuite 🎉`;
+                }
+            }
+        }
+
+        // Parallax Effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.about-image');
+            parallaxElements.forEach(el => {
+                const speed = 0.5;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+
+            // Show/hide floating add to cart
+            const productsSection = document.getElementById('collections');
+            if (productsSection) {
+                const rect = productsSection.getBoundingClientRect();
+                const floatingCart = document.getElementById('floating-cart');
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    floatingCart.classList.add('show');
+                } else {
+                    floatingCart.classList.remove('show');
+                }
+            }
+        });
+
+        function toggleCart() {
+            const sidebar = document.querySelector('.cart-sidebar');
+            const overlay = document.querySelector('.cart-overlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+        }
+
+        function changeLanguage() {
+            const langs = ['fr', 'en', 'ar'];
+            const currentIndex = langs.indexOf(currentLang);
+            currentLang = langs[(currentIndex + 1) % langs.length];
+            document.getElementById('current-lang').textContent = currentLang.toUpperCase();
+            showToast(`Langue changée en ${currentLang.toUpperCase()}`, 'success');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.getElementById('theme-icon');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.className = 'fas fa-sun';
+                showToast('Mode sombre activé', 'success');
+            } else {
+                icon.className = 'fas fa-moon';
+                showToast('Mode clair activé', 'success');
+            }
+        }
+
+        function renderProducts(filter = 'all', search = '') {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = products.filter(p => {
+                const matchesSearch = p.name.toLowerCase().includes(search.toLowerCase());
+                const matchesFilter = filter === 'all' || 
+                    (filter === 'low' && p.price < 150) ||
+                    (filter === 'mid' && p.price >= 150 && p.price <= 170) ||
+                    (filter === 'high' && p.price > 170);
+                return matchesSearch && matchesFilter;
+            }).map((p, i) => `
+                <div class="product-card" onclick="openQuickView(${JSON.stringify(p).replace(/"/g, '&quot;')}, '${descriptions[i]}')">
+                    <div class="product-badges">
+                        ${p.badge === 'bestseller' ? '<span class="product-badge badge-bestseller">Bestseller</span>' : ''}
+                        ${p.badge === 'limited' ? '<span class="product-badge badge-limited">Édition Limitée</span>' : ''}
+                        ${p.stock <= 5 ? `<span class="product-badge badge-stock">Plus que ${p.stock} !</span>` : ''}
+                    </div>
+                    <button class="wishlist-icon" onclick="event.stopPropagation(); toggleWishlistItem(${i}, event)">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <div class="product-image" style="background-image: url('${p.img}')"></div>
+                    <div class="product-info">
+                        <div class="product-name">${p.name}</div>
+                        <div class="product-description">${descriptions[i]}</div>
+                        ${p.stock <= 5 ? `<div class="product-stock"><i class="fas fa-fire"></i> Vente rapide - Plus que ${p.stock} disponibles !</div>` : ''}
+                        <div class="product-price">${p.price},00 €</div>
+                        <button class="add-to-cart" onclick="event.stopPropagation(); addToCart('${p.name}', ${p.price}, '${p.img}')">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au Panier
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterProducts() {
+            const search = document.getElementById('search-input').value;
+            const activeFilter = document.querySelector('.filter-btn.active');
+            const filter = activeFilter ? activeFilter.onclick.toString().match(/'([^']+)'/)[1] : 'all';
+            renderProducts(filter, search);
+        }
+
+        function filterByPrice(filter) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            const search = document.getElementById('search-input').value;
+            renderProducts(filter, search);
+        }
+
+        function toggleWishlistItem(index, event) {
+            const icon = event.currentTarget.querySelector('i');
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                event.currentTarget.classList.add('active');
+                wishlist.push(products[index]);
+                showToast(`${products[index].name} ajouté à vos favoris !`, 'success');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                event.currentTarget.classList.remove('active');
+                wishlist = wishlist.filter(p => p.name !== products[index].name);
+                showToast(`${products[index].name} retiré des favoris`, 'success');
+            }
+            document.getElementById('wishlist-count').textContent = wishlist.length;
+            document.getElementById('wishlist-count').style.display = wishlist.length > 0 ? 'flex' : 'none';
+        }
+
+        function addToCart(name, price, img) {
+            cart.push({name, price, img});
+            cartTotal += price;
+            updateCartSidebar();
+            toggleCart();
+            showToast(`${name} ajouté au panier !`, 'success');
+            createConfetti();
+            showSocialProof(name);
+        }
+
+        function removeFromCart(index) {
+            cartTotal -= cart[index].price;
+            const removedItem = cart[index].name;
+            cart.splice(index, 1);
+            updateCartSidebar();
+            showToast(`${removedItem} retiré du panier`, 'success');
+        }
+
+        function updateCartSidebar() {
+            const cartDiv = document.getElementById('cart-items-sidebar');
+            const cartFooter = document.getElementById('cart-footer');
+            const cartCount = document.getElementById('cart-count');
+
+            if (cart.length === 0) {
+                cartDiv.innerHTML = `
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-bag"></i>
+                        <p>Votre panier est vide</p>
+                    </div>
+                `;
+                cartFooter.style.display = 'none';
+                cartCount.style.display = 'none';
+            } else {
+                cartDiv.innerHTML = cart.map((item, index) => `
+                    <div class="cart-item-card">
+                        <div class="cart-item-image" style="background-image: url('${item.img}'); background-size: cover;"></div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.price.toFixed(2)} €</div>
+                            <button class="cart-item-remove" onclick="removeFromCart(${index})">
+                                <i class="fas fa-trash"></i> Retirer
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+                
+                cartFooter.style.display = 'block';
+                document.getElementById('cart-total-amount').textContent = cartTotal.toFixed(2) + ' €';
+                cartCount.textContent = cart.length;
+                cartCount.style.display = 'flex';
+                updateShippingProgress();
+                renderPayPalButton();
+            }
+        }
+
+        function renderPayPalButton() {
+            const container = document.getElementById('paypal-button-container');
+            container.innerHTML = '';
+            
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: cartTotal.toFixed(2),
+                                currency_code: 'EUR'
+                            },
+                            description: 'Commande NOUREL - ' + cart.map(item => item.name).join(', ')
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        showToast(`✅ Paiement réussi ! Merci ${details.payer.name.given_name} pour votre commande chez NOUREL.`, 'success');
+                        createConfetti();
+                        
+                        // Réinitialiser le panier après paiement
+                        cart = [];
+                        cartTotal = 0;
+                        updateCartSidebar();
+                        
+                        setTimeout(() => {
+                            alert(`🎉 Commande confirmée !\n\nMerci ${details.payer.name.given_name} !\n\nVous recevrez un email de confirmation sous peu.\n\nNuméro de transaction: ${details.id}`);
+                        }, 1000);
+                    });
+                },
+                onError: function(err) {
+                    showToast('❌ Une erreur est survenue lors du paiement. Veuillez réessayer.', 'error');
+                    console.error('Erreur PayPal:', err);
+                },
+                style: {
+                    layout: 'vertical',
+                    color: 'gold',
+                    shape: 'rect',
+                    label: 'paypal',
+                    height: 45
+                }
+            }).render('#paypal-button-container');
+        }
+
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                showToast('Votre panier est vide', 'error');
+                return;
+            }
+            toggleCart();
+        }
+
+        function subscribeNewsletter(e) {
+            e.preventDefault();
+            const email = e.target.querySelector('input').value;
+            showToast(`Merci pour votre inscription ${email} !`, 'success');
+            e.target.reset();
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <span class="toast-icon">${type === 'success' ? '✓' : '✕'}</span>
+                <span class="toast-message">${message}</span>
+            `;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function showSocialProof(productName) {
+            const names = ['Sarah M.', 'Amina K.', 'Fatima L.', 'Leila B.', 'Nadia R.'];
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const proof = document.getElementById('social-proof');
+            const avatar = proof.querySelector('.social-proof-avatar');
+            const nameEl = proof.querySelector('.social-proof-name');
+            const action = proof.querySelector('.social-proof-action');
+            
+            avatar.textContent = randomName[0];
+            nameEl.textContent = randomName;
+            action.innerHTML = `vient d'acheter <strong>${productName}</strong>`;
+            
+            proof.classList.add('show');
+            setTimeout(() => proof.classList.remove('show'), 5000);
+        }
+
+        // Initialize everything
+        startCountdown();
+        createParticles();
+        renderProducts();
+        showWelcomePopup();
+
+        // Show random social proof every 15 seconds
+        setInterval(() => {
+            const randomProduct = products[Math.floor(Math.random() * products.length)];
+            showSocialProof(randomProduct.name);
+        }, 15000);
+
+        // Show first social proof after 3 seconds
+        setTimeout(() => showSocialProof(products[0].name), 3000);
+
+        // Floating cart button functionality
+        document.getElementById('floating-cart').addEventListener('click', () => {
+            document.getElementById('collections').scrollIntoView({behavior: 'smooth'});
+        });
+    </script>
+</body>
+</html>#   N o u r e l  
+ 
