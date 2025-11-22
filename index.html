@@ -21,13 +21,16 @@
         body.dark-mode { background: #0a0a0a; color: #e5e5e5; }
         body.dark-mode .hero { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 50%, #1a1a1a 100%); }
         body.dark-mode .about-section, body.dark-mode .products-section, body.dark-mode .testimonials-section { background: #0a0a0a; }
-        body.dark-mode .product-card, body.dark-mode .testimonial-card, body.dark-mode .cart-sidebar, body.dark-mode .quick-view-modal, body.dark-mode .welcome-popup { background: #1a1a1a; border-color: #2a2a2a; }
+        body.dark-mode .product-card, body.dark-mode .testimonial-card, body.dark-mode .cart-sidebar, body.dark-mode .quick-view-modal, body.dark-mode .welcome-popup, body.dark-mode .zoom-modal-content { background: #1a1a1a; border-color: #2a2a2a; }
         body.dark-mode nav { background: rgba(26, 26, 26, 0.95); border-bottom-color: rgba(201, 169, 97, 0.2); }
         body.dark-mode .logo, body.dark-mode .nav-links a, body.dark-mode .about-text h2, body.dark-mode .product-name, body.dark-mode .testimonial-author, body.dark-mode .hero-content h1, body.dark-mode .section-header h2 { color: #e5e5e5; }
         body.dark-mode .search-box input, body.dark-mode .welcome-popup input { background: #2a2a2a; border-color: #3a3a3a; color: #e5e5e5; }
         body.dark-mode .testimonial-text, body.dark-mode .about-text p, body.dark-mode .hero-subtitle, body.dark-mode .hero-description { color: #999; }
         body.dark-mode .theme-toggle, body.dark-mode .lang-selector, body.dark-mode .filter-btn { border-color: #3a3a3a; color: #e5e5e5; }
         body.dark-mode .promo-banner { background: #1a1a1a; border-bottom-color: #c9a961; }
+        body.dark-mode .quantity-controls { border-color: #3a3a3a; }
+        body.dark-mode .quantity-btn { color: #999; }
+        body.dark-mode .quantity-btn:hover { background: #2a2a2a; }
         
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
@@ -42,6 +45,135 @@
         @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         @keyframes typing { from { width: 0; } to { width: 100%; } }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Image Zoom Modal */
+        .zoom-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10002;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+            animation: fadeInUp 0.3s ease;
+        }
+        .zoom-modal.show { display: flex; }
+        .zoom-modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+            animation: popIn 0.4s ease;
+        }
+        .zoom-modal img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .zoom-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        .zoom-close:hover { background: #c9a961; color: white; transform: rotate(90deg); }
+        .zoom-controls {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+        .zoom-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .zoom-btn:hover { background: #c9a961; color: white; transform: scale(1.1); }
+
+        /* Quantity Selector */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .quantity-label { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+        body.dark-mode .quantity-label { color: #e5e5e5; }
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+        body.dark-mode .quantity-controls { background: #2a2a2a; }
+        .quantity-btn {
+            background: transparent;
+            border: none;
+            padding: 10px 16px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        .quantity-btn:hover { background: #f5f5f5; color: #c9a961; }
+        .quantity-value {
+            padding: 10px 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            border-left: 1px solid #e0e0e0;
+            border-right: 1px solid #e0e0e0;
+            min-width: 50px;
+            text-align: center;
+        }
+        body.dark-mode .quantity-value { color: #e5e5e5; border-color: #3a3a3a; }
+        
+        /* Cart Item Quantity */
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .cart-quantity-btn {
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        .cart-quantity-btn:hover { background: #c9a961; color: white; border-color: #c9a961; }
+        .cart-quantity-value { font-weight: 700; color: #1a1a1a; min-width: 30px; text-align: center; font-size: 14px; }
+        body.dark-mode .cart-quantity-value { color: #e5e5e5; }
 
         /* Countdown Timer */
         .promo-banner {
@@ -173,6 +305,7 @@
             background-position: center;
             min-height: 400px;
             position: relative;
+            cursor: zoom-in;
         }
         .quick-view-image::after {
             content: '';
@@ -182,6 +315,16 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+        }
+        .quick-view-image:hover::before {
+            content: '🔍';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            z-index: 10;
+            animation: pulse 1s infinite;
         }
         .quick-view-content { padding: 50px 40px; }
         .quick-view-content h2 { font-size: 28px; font-weight: 700; margin-bottom: 15px; color: #1a1a1a; letter-spacing: 1px; }
@@ -453,6 +596,9 @@
             align-items: center;
             justify-content: center;
             font-size: 30px;
+            cursor: zoom-in;
+            background-size: cover;
+            background-position: center;
         }
         .cart-item-details { flex: 1; }
         .cart-item-name { font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px; }
@@ -564,8 +710,17 @@
         .wishlist-icon:hover { transform: scale(1.1); background: #ffffff; }
         .wishlist-icon.active { color: #ff6b6b; }
         
-        .product-image { width: 100%; height: 380px; background: linear-gradient(135deg, #e8dcc8 0%, #f0ead8 100%); display: flex; align-items: center; justify-content: center; font-size: 90px; overflow: hidden; position: relative; background-size: cover; background-position: center; }
+        .product-image { width: 100%; height: 380px; background: linear-gradient(135deg, #e8dcc8 0%, #f0ead8 100%); display: flex; align-items: center; justify-content: center; font-size: 90px; overflow: hidden; position: relative; background-size: cover; background-position: center; cursor: zoom-in; }
         .product-image::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent); animation: shimmer 3s infinite; }
+        .product-image:hover::before {
+            content: '🔍';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            z-index: 10;
+        }
         .product-info { padding: 40px 30px; }
         .product-name { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: #1a1a1a; letter-spacing: 1.5px; text-transform: uppercase; }
         .product-description { color: #888; margin-bottom: 25px; font-size: 13px; line-height: 1.7; font-weight: 300; }
@@ -656,6 +811,7 @@
             .footer-content { grid-template-columns: 1fr; }
             .newsletter-form { flex-direction: column; }
             .cart-sidebar, .quick-view-modal { width: 100%; right: -100%; }
+            .quick-view-modal { grid-template-columns: 1fr; }
             .trust-badges { gap: 30px; }
             .social-proof, .chat-widget { left: 20px; right: 20px; max-width: calc(100% - 40px); }
             .floating-add-cart { bottom: 20px; right: 20px; }
@@ -665,23 +821,33 @@
     </style>
 </head>
 <body>
+    <!-- Image Zoom Modal -->
+    <div class="zoom-modal" id="zoom-modal" onclick="closeZoom()">
+        <div class="zoom-modal-content">
+            <button class="zoom-close" onclick="event.stopPropagation(); closeZoom()">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="zoom-image" src="" alt="Zoom">
+        </div>
+    </div>
+
     <!-- Promo Banner with Countdown -->
     <div class="promo-banner">
         <div class="promo-text">
-            <i class="fas fa-gift"></i> OFFRE SPÉCIALE : -15% sur votre 1ère commande avec le code <strong>NOUREL15</strong>
+            <i class="fas fa-gift"></i> <span data-i18n="promo">OFFRE SPÉCIALE : -15% sur votre 1ère commande avec le code</span> <strong>NOUREL15</strong>
         </div>
         <div class="countdown-timer">
             <div class="countdown-item">
                 <div class="countdown-number" id="hours">00</div>
-                <div class="countdown-label">Heures</div>
+                <div class="countdown-label" data-i18n="hours">Heures</div>
             </div>
             <div class="countdown-item">
                 <div class="countdown-number" id="minutes">00</div>
-                <div class="countdown-label">Minutes</div>
+                <div class="countdown-label" data-i18n="minutes">Minutes</div>
             </div>
             <div class="countdown-item">
                 <div class="countdown-number" id="seconds">00</div>
-                <div class="countdown-label">Secondes</div>
+                <div class="countdown-label" data-i18n="seconds">Secondes</div>
             </div>
         </div>
     </div>
@@ -693,21 +859,21 @@
                 <i class="fas fa-times"></i>
             </button>
             <div class="popup-header">
-                <h2>Bienvenue chez NOUREL !</h2>
-                <p>Votre élégance commence ici</p>
+                <h2 data-i18n="welcome-title">Bienvenue chez NOUREL !</h2>
+                <p data-i18n="welcome-subtitle">Votre élégance commence ici</p>
                 <div class="popup-discount">-15%</div>
-                <p>sur votre première commande</p>
+                <p data-i18n="welcome-discount">sur votre première commande</p>
             </div>
             <div class="popup-body">
-                <p>Inscrivez-vous et recevez immédiatement votre code promo exclusif</p>
+                <p data-i18n="welcome-text">Inscrivez-vous et recevez immédiatement votre code promo exclusif</p>
                 <form class="popup-form" onsubmit="submitWelcomePopup(event)">
-                    <input type="email" class="popup-input" placeholder="Votre adresse email" required>
+                    <input type="email" class="popup-input" placeholder="Votre adresse email" data-i18n-placeholder="email-placeholder" required>
                     <button type="submit" class="popup-submit">
-                        <i class="fas fa-gift"></i> Obtenir mon Code Promo
+                        <i class="fas fa-gift"></i> <span data-i18n="get-code">Obtenir mon Code Promo</span>
                     </button>
                 </form>
             </div>
-            <div class="popup-footer">
+            <div class="popup-footer" data-i18n="welcome-footer">
                 En vous inscrivant, vous acceptez de recevoir nos offres exclusives
             </div>
         </div>
@@ -719,20 +885,28 @@
             <button class="popup-close" onclick="closeQuickView()">
                 <i class="fas fa-times"></i>
             </button>
-            <div class="quick-view-image" id="qv-image"></div>
+            <div class="quick-view-image" id="qv-image" onclick="event.stopPropagation(); zoomQuickViewImage()"></div>
             <div class="quick-view-content">
                 <h2 id="qv-name"></h2>
                 <div class="quick-view-price" id="qv-price"></div>
                 <p class="quick-view-description" id="qv-description"></p>
                 <ul class="quick-view-features">
-                    <li><i class="fas fa-gem"></i> Cristaux Swarovski authentiques</li>
-                    <li><i class="fas fa-certificate"></i> Certificat d'authenticité inclus</li>
-                    <li><i class="fas fa-truck"></i> Livraison gratuite et rapide</li>
-                    <li><i class="fas fa-shield-alt"></i> Garantie satisfait ou remboursé 30 jours</li>
+                    <li><i class="fas fa-gem"></i> <span data-i18n="feature-swarovski">Cristaux Swarovski authentiques</span></li>
+                    <li><i class="fas fa-certificate"></i> <span data-i18n="feature-certificate">Certificat d'authenticité inclus</span></li>
+                    <li><i class="fas fa-truck"></i> <span data-i18n="feature-shipping">Livraison gratuite et rapide</span></li>
+                    <li><i class="fas fa-shield-alt"></i> <span data-i18n="feature-guarantee">Garantie satisfait ou remboursé 30 jours</span></li>
                 </ul>
+                <div class="quantity-selector">
+                    <span class="quantity-label" data-i18n="quantity">Quantité :</span>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="updateQuickViewQuantity(-1)">-</button>
+                        <span class="quantity-value" id="qv-quantity">1</span>
+                        <button class="quantity-btn" onclick="updateQuickViewQuantity(1)">+</button>
+                    </div>
+                </div>
                 <div class="quick-view-actions">
                     <button class="quick-view-add" onclick="addFromQuickView()">
-                        <i class="fas fa-shopping-cart"></i> Ajouter au Panier
+                        <i class="fas fa-shopping-cart"></i> <span data-i18n="add-to-cart">Ajouter au Panier</span>
                     </button>
                 </div>
             </div>
@@ -743,10 +917,10 @@
     <nav>
         <div class="logo">NOUREL</div>
         <ul class="nav-links">
-            <li><a href="#about">À propos</a></li>
-            <li><a href="#collections">Collections</a></li>
-            <li><a href="#testimonials">Avis</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about" data-i18n="nav-about">À propos</a></li>
+            <li><a href="#collections" data-i18n="nav-collections">Collections</a></li>
+            <li><a href="#testimonials" data-i18n="nav-testimonials">Avis</a></li>
+            <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
         </ul>
         <div class="nav-right">
             <button class="lang-selector" onclick="changeLanguage()">
@@ -770,7 +944,7 @@
     <div class="cart-overlay" onclick="toggleCart()"></div>
     <div class="cart-sidebar">
         <div class="cart-header">
-            <h2><i class="fas fa-shopping-bag"></i> Mon Panier</h2>
+            <h2><i class="fas fa-shopping-bag"></i> <span data-i18n="my-cart">Mon Panier</span></h2>
             <button class="close-cart" onclick="toggleCart()">
                 <i class="fas fa-times"></i>
             </button>
@@ -778,7 +952,7 @@
         <div class="cart-items-container" id="cart-items-sidebar">
             <div class="cart-empty">
                 <i class="fas fa-shopping-bag"></i>
-                <p>Votre panier est vide</p>
+                <p data-i18n="cart-empty">Votre panier est vide</p>
             </div>
         </div>
         <div class="cart-footer" id="cart-footer" style="display: none;">
@@ -789,12 +963,12 @@
                 </div>
             </div>
             <div class="cart-total">
-                <span class="cart-total-label">Total</span>
+                <span class="cart-total-label" data-i18n="total">Total</span>
                 <span class="cart-total-amount" id="cart-total-amount">0,00 €</span>
             </div>
             <div id="paypal-button-container" style="margin-top: 20px;"></div>
             <button class="continue-shopping" onclick="toggleCart()">
-                Continuer mes Achats
+                <span data-i18n="continue-shopping">Continuer mes Achats</span>
             </button>
         </div>
     </div>
@@ -802,7 +976,7 @@
     <!-- Floating Add to Cart -->
     <div class="floating-add-cart" id="floating-cart">
         <i class="fas fa-shopping-cart"></i>
-        <span>Ajouter au Panier</span>
+        <span data-i18n="add-to-cart">Ajouter au Panier</span>
     </div>
 
     <!-- Chat Widget -->
@@ -810,7 +984,7 @@
         <div class="chat-bubble" onclick="toggleChat()">
             <div class="chat-pulse"></div>
             <i class="fas fa-comments"></i>
-            <span>Besoin d'aide ?</span>
+            <span data-i18n="need-help">Besoin d'aide ?</span>
         </div>
         <div class="chat-window" id="chat-window">
             <div class="chat-header">
@@ -820,10 +994,10 @@
                 </button>
             </div>
             <div class="chat-messages">
-                <div class="chat-message">
+                <div class="chat-message" data-i18n="chat-hello">
                     Bonjour ! 👋 Bienvenue chez NOUREL. Comment puis-je vous aider aujourd'hui ?
                 </div>
-                <div class="chat-message" style="margin-top: 10px;">
+                <div class="chat-message" style="margin-top: 10px;" data-i18n="chat-available">
                     Je suis disponible pour répondre à toutes vos questions sur nos voiles de luxe !
                 </div>
             </div>
@@ -835,8 +1009,8 @@
         <div class="social-proof-avatar">S</div>
         <div class="social-proof-text">
             <div class="social-proof-name">Sarah M.</div>
-            <div class="social-proof-action">vient d'acheter <strong>Voile Étoile</strong></div>
-            <div class="social-proof-time"><i class="fas fa-clock"></i> Il y a 3 minutes</div>
+            <div class="social-proof-action"><span data-i18n="just-bought">vient d'acheter</span> <strong>Voile Étoile</strong></div>
+            <div class="social-proof-time"><i class="fas fa-clock"></i> <span data-i18n="time-ago">Il y a 3 minutes</span></div>
         </div>
     </div>
 
@@ -845,10 +1019,10 @@
         <div class="particles" id="particles"></div>
         <div class="hero-content">
             <h1>NOUREL</h1>
-            <p class="hero-subtitle">Luxe & Élégance</p>
-            <p class="hero-description">Collection exclusive de voiles ornées de cristaux Swarovski authentiques</p>
+            <p class="hero-subtitle" data-i18n="hero-subtitle">Luxe & Élégance</p>
+            <p class="hero-description" data-i18n="hero-description">Collection exclusive de voiles ornées de cristaux Swarovski authentiques</p>
             <button class="cta-button secondary" onclick="document.getElementById('collections').scrollIntoView({behavior: 'smooth'})">
-                Découvrir la Collection
+                <span data-i18n="discover-collection">Découvrir la Collection</span>
             </button>
         </div>
     </section>
@@ -857,19 +1031,19 @@
     <div class="trust-badges">
         <div class="trust-badge">
             <i class="fas fa-gem"></i>
-            <p>CRISTAUX SWAROVSKI</p>
+            <p data-i18n="trust-swarovski">CRISTAUX SWAROVSKI</p>
         </div>
         <div class="trust-badge">
             <i class="fas fa-shipping-fast"></i>
-            <p>LIVRAISON GRATUITE</p>
+            <p data-i18n="trust-shipping">LIVRAISON GRATUITE</p>
         </div>
         <div class="trust-badge">
             <i class="fas fa-shield-alt"></i>
-            <p>PAIEMENT SÉCURISÉ</p>
+            <p data-i18n="trust-payment">PAIEMENT SÉCURISÉ</p>
         </div>
         <div class="trust-badge">
             <i class="fas fa-undo"></i>
-            <p>RETOUR 30 JOURS</p>
+            <p data-i18n="trust-return">RETOUR 30 JOURS</p>
         </div>
     </div>
 
@@ -878,11 +1052,11 @@
     <!-- About Section -->
     <section class="about-section" id="about">
         <div class="about-text">
-            <h2>Notre Histoire</h2>
-            <p>Nourel est née d'une passion pour l'élégance intemporelle et la beauté raffinée. Chaque création est le fruit d'un savoir-faire artisanal minutieux.</p>
-            <p>Nous sélectionnons les plus beaux matériaux et les cristaux Swarovski de qualité supérieure pour créer des voiles qui transcendent le temps.</p>
-            <p>Véritables œuvres d'art, nos voiles incarnent le luxe, la sophistication et l'intemporalité.</p>
-            <button class="cta-button">En Savoir Plus</button>
+            <h2 data-i18n="about-title">Notre Histoire</h2>
+            <p data-i18n="about-text1">Nourel est née d'une passion pour l'élégance intemporelle et la beauté raffinée. Chaque création est le fruit d'un savoir-faire artisanal minutieux.</p>
+            <p data-i18n="about-text2">Nous sélectionnons les plus beaux matériaux et les cristaux Swarovski de qualité supérieure pour créer des voiles qui transcendent le temps.</p>
+            <p data-i18n="about-text3">Véritables œuvres d'art, nos voiles incarnent le luxe, la sophistication et l'intemporalité.</p>
+            <button class="cta-button"><span data-i18n="learn-more">En Savoir Plus</span></button>
         </div>
         <div class="about-image"></div>
     </section>
@@ -890,17 +1064,17 @@
     <!-- Collections -->
     <section class="products-section" id="collections">
         <div class="section-header">
-            <p>Collection Exclusive</p>
-            <h2>Nos Créations</h2>
+            <p data-i18n="section-exclusive">Collection Exclusive</p>
+            <h2 data-i18n="section-creations">Nos Créations</h2>
         </div>
 
         <div class="filter-search-bar">
             <div class="search-box">
-                <input type="text" id="search-input" placeholder="Rechercher un voile..." oninput="filterProducts()">
+                <input type="text" id="search-input" placeholder="Rechercher un voile..." data-i18n-placeholder="search" oninput="filterProducts()">
                 <i class="fas fa-search search-icon"></i>
             </div>
             <div class="filter-buttons">
-                <button class="filter-btn active" onclick="filterByPrice('all')">Tous</button>
+                <button class="filter-btn active" onclick="filterByPrice('all')" data-i18n="filter-all">Tous</button>
                 <button class="filter-btn" onclick="filterByPrice('low')">- 150€</button>
                 <button class="filter-btn" onclick="filterByPrice('mid')">150€ - 170€</button>
                 <button class="filter-btn" onclick="filterByPrice('high')">+ 170€</button>
@@ -913,8 +1087,8 @@
     <!-- Testimonials -->
     <section class="testimonials-section" id="testimonials">
         <div class="section-header">
-            <p>Avis Clients</p>
-            <h2>Ce qu'ils disent</h2>
+            <p data-i18n="testimonials-label">Avis Clients</p>
+            <h2 data-i18n="testimonials-title">Ce qu'ils disent</h2>
         </div>
         <div class="testimonials-grid">
             <div class="testimonial-card">
@@ -940,29 +1114,29 @@
         <div class="features-grid">
             <div class="feature">
                 <div class="feature-icon">✓</div>
-                <h3>Qualité Premium</h3>
-                <p>Matériaux haut de gamme sélectionnés pour leur durabilité et leur beauté intemporelle.</p>
+                <h3 data-i18n="feat-quality-title">Qualité Premium</h3>
+                <p data-i18n="feat-quality-text">Matériaux haut de gamme sélectionnés pour leur durabilité et leur beauté intemporelle.</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">🚚</div>
-                <h3>Livraison Gratuite</h3>
-                <p>Livraison express dans un emballage de prestige à toutes vos commandes.</p>
+                <h3 data-i18n="feat-delivery-title">Livraison Gratuite</h3>
+                <p data-i18n="feat-delivery-text">Livraison express dans un emballage de prestige à toutes vos commandes.</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">🛡️</div>
-                <h3>Garantie 100%</h3>
-                <p>Chaque pièce garantie authentique avec certificat d'authenticité inclus.</p>
+                <h3 data-i18n="feat-guarantee-title">Garantie 100%</h3>
+                <p data-i18n="feat-guarantee-text">Chaque pièce garantie authentique avec certificat d'authenticité inclus.</p>
             </div>
         </div>
     </section>
 
     <!-- Newsletter -->
     <section class="newsletter-section">
-        <h2 class="newsletter-title">Restez Informé</h2>
-        <p class="newsletter-subtitle">Inscrivez-vous pour recevoir nos nouveautés et offres exclusives</p>
+        <h2 class="newsletter-title" data-i18n="newsletter-title">Restez Informé</h2>
+        <p class="newsletter-subtitle" data-i18n="newsletter-subtitle">Inscrivez-vous pour recevoir nos nouveautés et offres exclusives</p>
         <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
-            <input type="email" class="newsletter-input" placeholder="Votre email" required>
-            <button type="submit" class="newsletter-btn">S'inscrire</button>
+            <input type="email" class="newsletter-input" placeholder="Votre email" data-i18n-placeholder="email" required>
+            <button type="submit" class="newsletter-btn"><span data-i18n="subscribe">S'inscrire</span></button>
         </form>
     </section>
 
@@ -970,33 +1144,33 @@
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-col">
-                <h4>À Propos de NOUREL</h4>
-                <p>Découvrez une sélection exclusive de voiles de luxe ornées de cristaux Swarovski authentiques.</p>
+                <h4 data-i18n="footer-about-title">À Propos de NOUREL</h4>
+                <p data-i18n="footer-about-text">Découvrez une sélection exclusive de voiles de luxe ornées de cristaux Swarovski authentiques.</p>
             </div>
             <div class="footer-col">
-                <h4>Collections</h4>
-                <a href="#collections">Voiles Exclusives</a>
-                <a href="#collections">Éditions Limitées</a>
-                <a href="#collections">Nouvelles Arrivées</a>
+                <h4 data-i18n="footer-collections">Collections</h4>
+                <a href="#collections" data-i18n="footer-exclusive">Voiles Exclusives</a>
+                <a href="#collections" data-i18n="footer-limited">Éditions Limitées</a>
+                <a href="#collections" data-i18n="footer-new">Nouvelles Arrivées</a>
             </div>
             <div class="footer-col">
-                <h4>Service Client</h4>
-                <a href="#">Politique de Retour</a>
-                <a href="#">Guide de Livraison</a>
-                <a href="#">FAQ & Support</a>
+                <h4 data-i18n="footer-service">Service Client</h4>
+                <a href="#" data-i18n="footer-return">Politique de Retour</a>
+                <a href="#" data-i18n="footer-delivery">Guide de Livraison</a>
+                <a href="#" data-i18n="footer-faq">FAQ & Support</a>
             </div>
             <div class="footer-col">
-                <h4>Contact</h4>
+                <h4 data-i18n="footer-contact">Contact</h4>
                 <p>Email: hello@nourel.com</p>
                 <p>Tél: +33 (0)1 23 45 67 89</p>
                 <p>Instagram: @nourel_official</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 NOUREL - Collection Exclusive. Tous droits réservés.</p>
+            <p data-i18n="footer-copyright">&copy; 2025 NOUREL - Collection Exclusive. Tous droits réservés.</p>
             <div>
-                <a href="#">Mentions Légales</a>
-                <a href="#" style="margin-left: 20px;">Politique de Confidentialité</a>
+                <a href="#" data-i18n="footer-legal">Mentions Légales</a>
+                <a href="#" style="margin-left: 20px;" data-i18n="footer-privacy">Politique de Confidentialité</a>
             </div>
         </div>
     </footer>
@@ -1007,15 +1181,245 @@
         let cartTotal = 0;
         let wishlist = [];
         let currentQuickViewProduct = null;
+        let quickViewQuantity = 1;
         const FREE_SHIPPING_THRESHOLD = 200;
 
+        // Traductions complètes
+        const translations = {
+            fr: {
+                'promo': 'OFFRE SPÉCIALE : -15% sur votre 1ère commande avec le code',
+                'hours': 'Heures',
+                'minutes': 'Minutes',
+                'seconds': 'Secondes',
+                'welcome-title': 'Bienvenue chez NOUREL !',
+                'welcome-subtitle': 'Votre élégance commence ici',
+                'welcome-discount': 'sur votre première commande',
+                'welcome-text': 'Inscrivez-vous et recevez immédiatement votre code promo exclusif',
+                'email-placeholder': 'Votre adresse email',
+                'get-code': 'Obtenir mon Code Promo',
+                'welcome-footer': 'En vous inscrivant, vous acceptez de recevoir nos offres exclusives',
+                'nav-about': 'À propos',
+                'nav-collections': 'Collections',
+                'nav-testimonials': 'Avis',
+                'nav-contact': 'Contact',
+                'my-cart': 'Mon Panier',
+                'cart-empty': 'Votre panier est vide',
+                'total': 'Total',
+                'continue-shopping': 'Continuer mes Achats',
+                'add-to-cart': 'Ajouter au Panier',
+                'quantity': 'Quantité',
+                'remove': 'Retirer',
+                'feature-swarovski': 'Cristaux Swarovski authentiques',
+                'feature-certificate': "Certificat d'authenticité inclus",
+                'feature-shipping': 'Livraison gratuite et rapide',
+                'feature-guarantee': 'Garantie satisfait ou remboursé 30 jours',
+                'need-help': 'Besoin d\'aide ?',
+                'chat-hello': 'Bonjour ! 👋 Bienvenue chez NOUREL. Comment puis-je vous aider aujourd\'hui ?',
+                'chat-available': 'Je suis disponible pour répondre à toutes vos questions sur nos voiles de luxe !',
+                'just-bought': 'vient d\'acheter',
+                'time-ago': 'Il y a 3 minutes',
+                'hero-subtitle': 'Luxe & Élégance',
+                'hero-description': 'Collection exclusive de voiles ornées de cristaux Swarovski authentiques',
+                'discover-collection': 'Découvrir la Collection',
+                'trust-swarovski': 'CRISTAUX SWAROVSKI',
+                'trust-shipping': 'LIVRAISON GRATUITE',
+                'trust-payment': 'PAIEMENT SÉCURISÉ',
+                'trust-return': 'RETOUR 30 JOURS',
+                'about-title': 'Notre Histoire',
+                'about-text1': 'Nourel est née d\'une passion pour l\'élégance intemporelle et la beauté raffinée. Chaque création est le fruit d\'un savoir-faire artisanal minutieux.',
+                'about-text2': 'Nous sélectionnons les plus beaux matériaux et les cristaux Swarovski de qualité supérieure pour créer des voiles qui transcendent le temps.',
+                'about-text3': 'Véritables œuvres d\'art, nos voiles incarnent le luxe, la sophistication et l\'intemporalité.',
+                'learn-more': 'En Savoir Plus',
+                'section-exclusive': 'Collection Exclusive',
+                'section-creations': 'Nos Créations',
+                'search': 'Rechercher un voile...',
+                'filter-all': 'Tous',
+                'testimonials-label': 'Avis Clients',
+                'testimonials-title': 'Ce qu\'ils disent',
+                'feat-quality-title': 'Qualité Premium',
+                'feat-quality-text': 'Matériaux haut de gamme sélectionnés pour leur durabilité et leur beauté intemporelle.',
+                'feat-delivery-title': 'Livraison Gratuite',
+                'feat-delivery-text': 'Livraison express dans un emballage de prestige à toutes vos commandes.',
+                'feat-guarantee-title': 'Garantie 100%',
+                'feat-guarantee-text': 'Chaque pièce garantie authentique avec certificat d\'authenticité inclus.',
+                'newsletter-title': 'Restez Informé',
+                'newsletter-subtitle': 'Inscrivez-vous pour recevoir nos nouveautés et offres exclusives',
+                'email': 'Votre email',
+                'subscribe': 'S\'inscrire',
+                'footer-about-title': 'À Propos de NOUREL',
+                'footer-about-text': 'Découvrez une sélection exclusive de voiles de luxe ornées de cristaux Swarovski authentiques.',
+                'footer-collections': 'Collections',
+                'footer-exclusive': 'Voiles Exclusives',
+                'footer-limited': 'Éditions Limitées',
+                'footer-new': 'Nouvelles Arrivées',
+                'footer-service': 'Service Client',
+                'footer-return': 'Politique de Retour',
+                'footer-delivery': 'Guide de Livraison',
+                'footer-faq': 'FAQ & Support',
+                'footer-contact': 'Contact',
+                'footer-copyright': '© 2025 NOUREL - Collection Exclusive. Tous droits réservés.',
+                'footer-legal': 'Mentions Légales',
+                'footer-privacy': 'Politique de Confidentialité'
+            },
+            en: {
+                'promo': 'SPECIAL OFFER: -15% on your 1st order with code',
+                'hours': 'Hours',
+                'minutes': 'Minutes',
+                'seconds': 'Seconds',
+                'welcome-title': 'Welcome to NOUREL!',
+                'welcome-subtitle': 'Your elegance starts here',
+                'welcome-discount': 'on your first order',
+                'welcome-text': 'Sign up and receive your exclusive promo code immediately',
+                'email-placeholder': 'Your email address',
+                'get-code': 'Get My Promo Code',
+                'welcome-footer': 'By signing up, you agree to receive our exclusive offers',
+                'nav-about': 'About',
+                'nav-collections': 'Collections',
+                'nav-testimonials': 'Reviews',
+                'nav-contact': 'Contact',
+                'my-cart': 'My Cart',
+                'cart-empty': 'Your cart is empty',
+                'total': 'Total',
+                'continue-shopping': 'Continue Shopping',
+                'add-to-cart': 'Add to Cart',
+                'quantity': 'Quantity',
+                'remove': 'Remove',
+                'feature-swarovski': 'Authentic Swarovski crystals',
+                'feature-certificate': 'Certificate of authenticity included',
+                'feature-shipping': 'Free and fast delivery',
+                'feature-guarantee': '30-day satisfaction guarantee',
+                'need-help': 'Need help?',
+                'chat-hello': 'Hello! 👋 Welcome to NOUREL. How can I help you today?',
+                'chat-available': 'I\'m available to answer all your questions about our luxury veils!',
+                'just-bought': 'just purchased',
+                'time-ago': '3 minutes ago',
+                'hero-subtitle': 'Luxury & Elegance',
+                'hero-description': 'Exclusive collection of veils adorned with authentic Swarovski crystals',
+                'discover-collection': 'Discover the Collection',
+                'trust-swarovski': 'SWAROVSKI CRYSTALS',
+                'trust-shipping': 'FREE SHIPPING',
+                'trust-payment': 'SECURE PAYMENT',
+                'trust-return': '30 DAY RETURN',
+                'about-title': 'Our Story',
+                'about-text1': 'Nourel was born from a passion for timeless elegance and refined beauty. Each creation is the result of meticulous artisan craftsmanship.',
+                'about-text2': 'We select the finest materials and premium Swarovski crystals to create veils that transcend time.',
+                'about-text3': 'True works of art, our veils embody luxury, sophistication and timelessness.',
+                'learn-more': 'Learn More',
+                'section-exclusive': 'Exclusive Collection',
+                'section-creations': 'Our Creations',
+                'search': 'Search for a veil...',
+                'filter-all': 'All',
+                'testimonials-label': 'Customer Reviews',
+                'testimonials-title': 'What they say',
+                'feat-quality-title': 'Premium Quality',
+                'feat-quality-text': 'High-end materials selected for their durability and timeless beauty.',
+                'feat-delivery-title': 'Free Delivery',
+                'feat-delivery-text': 'Express delivery in prestigious packaging for all your orders.',
+                'feat-guarantee-title': '100% Guarantee',
+                'feat-guarantee-text': 'Each piece guaranteed authentic with certificate of authenticity included.',
+                'newsletter-title': 'Stay Informed',
+                'newsletter-subtitle': 'Subscribe to receive our news and exclusive offers',
+                'email': 'Your email',
+                'subscribe': 'Subscribe',
+                'footer-about-title': 'About NOUREL',
+                'footer-about-text': 'Discover an exclusive selection of luxury veils adorned with authentic Swarovski crystals.',
+                'footer-collections': 'Collections',
+                'footer-exclusive': 'Exclusive Veils',
+                'footer-limited': 'Limited Editions',
+                'footer-new': 'New Arrivals',
+                'footer-service': 'Customer Service',
+                'footer-return': 'Return Policy',
+                'footer-delivery': 'Delivery Guide',
+                'footer-faq': 'FAQ & Support',
+                'footer-contact': 'Contact',
+                'footer-copyright': '© 2025 NOUREL - Exclusive Collection. All rights reserved.',
+                'footer-legal': 'Legal Notice',
+                'footer-privacy': 'Privacy Policy'
+            },
+            ar: {
+                'promo': 'عرض خاص: خصم 15% على طلبك الأول بالرمز',
+                'hours': 'ساعات',
+                'minutes': 'دقائق',
+                'seconds': 'ثواني',
+                'welcome-title': 'مرحباً بك في نوريل!',
+                'welcome-subtitle': 'أناقتك تبدأ هنا',
+                'welcome-discount': 'على طلبك الأول',
+                'welcome-text': 'سجل واحصل على رمز الخصم الحصري فوراً',
+                'email-placeholder': 'بريدك الإلكتروني',
+                'get-code': 'احصل على رمز الخصم',
+                'welcome-footer': 'بالتسجيل، أنت توافق على تلقي عروضنا الحصرية',
+                'nav-about': 'من نحن',
+                'nav-collections': 'المجموعات',
+                'nav-testimonials': 'الآراء',
+                'nav-contact': 'اتصل بنا',
+                'my-cart': 'سلتي',
+                'cart-empty': 'سلتك فارغة',
+                'total': 'المجموع',
+                'continue-shopping': 'متابعة التسوق',
+                'add-to-cart': 'أضف للسلة',
+                'quantity': 'الكمية',
+                'remove': 'إزالة',
+                'feature-swarovski': 'كريستالات سواروفسكي أصلية',
+                'feature-certificate': 'شهادة أصالة مرفقة',
+                'feature-shipping': 'توصيل مجاني وسريع',
+                'feature-guarantee': 'ضمان استرداد المال لمدة 30 يوم',
+                'need-help': 'تحتاج مساعدة؟',
+                'chat-hello': 'مرحباً! 👋 أهلاً بك في نوريل. كيف يمكنني مساعدتك اليوم؟',
+                'chat-available': 'أنا متاح للإجابة على جميع أسئلتك حول حجابنا الفاخر!',
+                'just-bought': 'اشترى للتو',
+                'time-ago': 'منذ 3 دقائق',
+                'hero-subtitle': 'الفخامة والأناقة',
+                'hero-description': 'مجموعة حصرية من الحجاب المزين بكريستالات سواروفسكي الأصلية',
+                'discover-collection': 'اكتشف المجموعة',
+                'trust-swarovski': 'كريستالات سواروفسكي',
+                'trust-shipping': 'شحن مجاني',
+                'trust-payment': 'دفع آمن',
+                'trust-return': 'إرجاع 30 يوم',
+                'about-title': 'قصتنا',
+                'about-text1': 'ولدت نوريل من شغف بالأناقة الخالدة والجمال المتقن. كل إبداع هو نتيجة حرفية يدوية دقيقة.',
+                'about-text2': 'نختار أفضل المواد وكريستالات سواروفسكي الفاخرة لإنشاء حجاب يتجاوز الزمن.',
+                'about-text3': 'أعمال فنية حقيقية، حجابنا يجسد الفخامة والرقي والأبدية.',
+                'learn-more': 'اعرف المزيد',
+                'section-exclusive': 'مجموعة حصرية',
+                'section-creations': 'إبداعاتنا',
+                'search': 'ابحث عن حجاب...',
+                'filter-all': 'الكل',
+                'testimonials-label': 'آراء العملاء',
+                'testimonials-title': 'ماذا يقولون',
+                'feat-quality-title': 'جودة فاخرة',
+                'feat-quality-text': 'مواد عالية الجودة مختارة لمتانتها وجمالها الخالد.',
+                'feat-delivery-title': 'توصيل مجاني',
+                'feat-delivery-text': 'توصيل سريع في تغليف فاخر لجميع طلباتك.',
+                'feat-guarantee-title': 'ضمان 100%',
+                'feat-guarantee-text': 'كل قطعة مضمونة أصلية مع شهادة أصالة مرفقة.',
+                'newsletter-title': 'ابق على اطلاع',
+                'newsletter-subtitle': 'اشترك لتلقي أخبارنا وعروضنا الحصرية',
+                'email': 'بريدك الإلكتروني',
+                'subscribe': 'اشترك',
+                'footer-about-title': 'عن نوريل',
+                'footer-about-text': 'اكتشف مجموعة حصرية من الحجاب الفاخر المزين بكريستالات سواروفسكي الأصلية.',
+                'footer-collections': 'المجموعات',
+                'footer-exclusive': 'حجاب حصري',
+                'footer-limited': 'إصدارات محدودة',
+                'footer-new': 'وصل حديثاً',
+                'footer-service': 'خدمة العملاء',
+                'footer-return': 'سياسة الإرجاع',
+                'footer-delivery': 'دليل التوصيل',
+                'footer-faq': 'الأسئلة الشائعة',
+                'footer-contact': 'اتصل بنا',
+                'footer-copyright': '© 2025 نوريل - مجموعة حصرية. جميع الحقوق محفوظة.',
+                'footer-legal': 'إشعار قانوني',
+                'footer-privacy': 'سياسة الخصوصية'
+            }
+        };
+
         const products = [
-            { name: "Voile Étoile", price: 149, img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=380&fit=crop", stock: 5, badge: "bestseller" },
-            { name: "Voile Diamant", price: 189, img: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&h=380&fit=crop", stock: 3, badge: "limited" },
-            { name: "Voile Royale", price: 169, img: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=380&fit=crop", stock: 8, badge: "bestseller" },
-            { name: "Voile Jardin", price: 145, img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&h=380&fit=crop", stock: 6, badge: null },
-            { name: "Voile Dentelle", price: 155, img: "https://images.unsplash.com/photo-1594552072238-52fd5319d4c0?w=400&h=380&fit=crop", stock: 4, badge: "limited" },
-            { name: "Voile Prestige", price: 175, img: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400&h=380&fit=crop", stock: 2, badge: "limited" }
+            { name: "Voile Étoile", price: 149, img: "Image/image_0368d77e-0d5c-44fa-930c-1a650ae2f297.PNG", stock: 5, badge: "bestseller" },
+            { name: "Voile Diamant", price: 189, img: "Image/Voile-strass--scaled.jpg", stock: 3, badge: "limited" },
+            { name: "Voile Royale", price: 169, img: "Image/C7C928C5-691E-4BE4-AD83-41B7ED5C57F6.webp", stock: 8, badge: "bestseller" },
+            { name: "Voile Jardin", price: 145, img: "Image/20_4c65dd62-67b9-415b-aab4-803f1396ee42.webp", stock: 6, badge: null },
+            { name: "Voile Dentelle", price: 155, img: "Image/IMG_8643.jpg", stock: 4, badge: "limited" },
+            { name: "Voile Prestige", price: 175, img: "Image/C7C928C5-691E-4BE4-AD83-41B7ED5C57F6.webp", stock: 2, badge: "limited" }
         ];
 
         const descriptions = [
@@ -1027,9 +1431,71 @@
             "Collection signature avec cristaux premium écru et or. Le summum du luxe."
         ];
 
+        // Image Zoom Functions
+        function openZoom(imageSrc) {
+            document.getElementById('zoom-image').src = imageSrc;
+            document.getElementById('zoom-modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeZoom() {
+            document.getElementById('zoom-modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        function zoomQuickViewImage() {
+            const bgImage = document.getElementById('qv-image').style.backgroundImage;
+            const imageUrl = bgImage.slice(5, -2);
+            openZoom(imageUrl);
+        }
+
+        // Quantity Management
+        function updateQuickViewQuantity(change) {
+            quickViewQuantity = Math.max(1, Math.min(10, quickViewQuantity + change));
+            document.getElementById('qv-quantity').textContent = quickViewQuantity;
+        }
+
+        function updateCartQuantity(index, change) {
+            const newQty = Math.max(1, Math.min(10, cart[index].quantity + change));
+            const priceDiff = cart[index].price * (newQty - cart[index].quantity);
+            cart[index].quantity = newQty;
+            cartTotal += priceDiff;
+            updateCartSidebar();
+        }
+
+        // Language Translation
+        function changeLanguage() {
+            const langs = ['fr', 'en', 'ar'];
+            const currentIndex = langs.indexOf(currentLang);
+            currentLang = langs[(currentIndex + 1) % langs.length];
+            document.getElementById('current-lang').textContent = currentLang.toUpperCase();
+            
+            if (currentLang === 'ar') {
+                document.body.style.direction = 'rtl';
+            } else {
+                document.body.style.direction = 'ltr';
+            }
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.textContent = translations[currentLang][key];
+                }
+            });
+            
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[currentLang][key]) {
+                    el.placeholder = translations[currentLang][key];
+                }
+            });
+            
+            showToast(`${currentLang === 'fr' ? 'Langue' : currentLang === 'en' ? 'Language' : 'اللغة'}: ${currentLang.toUpperCase()}`, 'success');
+        }
+
         // Countdown Timer
         function startCountdown() {
-            const endTime = new Date().getTime() + (24 * 60 * 60 * 1000); // 24 hours
+            const endTime = new Date().getTime() + (24 * 60 * 60 * 1000);
             
             setInterval(() => {
                 const now = new Date().getTime();
@@ -1081,10 +1547,12 @@
         // Quick View
         function openQuickView(product, description) {
             currentQuickViewProduct = product;
+            quickViewQuantity = 1;
             document.getElementById('qv-image').style.backgroundImage = `url('${product.img}')`;
             document.getElementById('qv-name').textContent = product.name;
             document.getElementById('qv-price').textContent = product.price + ',00 €';
             document.getElementById('qv-description').textContent = description;
+            document.getElementById('qv-quantity').textContent = '1';
             document.getElementById('quick-view-overlay').classList.add('show');
         }
 
@@ -1094,7 +1562,9 @@
 
         function addFromQuickView() {
             if (currentQuickViewProduct) {
-                addToCart(currentQuickViewProduct.name, currentQuickViewProduct.price, currentQuickViewProduct.img);
+                addToCart(currentQuickViewProduct.name, currentQuickViewProduct.price, currentQuickViewProduct.img, quickViewQuantity);
+                quickViewQuantity = 1;
+                document.getElementById('qv-quantity').textContent = '1';
                 closeQuickView();
             }
         }
@@ -1149,7 +1619,6 @@
                 el.style.transform = `translateY(${scrolled * speed}px)`;
             });
 
-            // Show/hide floating add to cart
             const productsSection = document.getElementById('collections');
             if (productsSection) {
                 const rect = productsSection.getBoundingClientRect();
@@ -1167,14 +1636,6 @@
             const overlay = document.querySelector('.cart-overlay');
             sidebar.classList.toggle('open');
             overlay.classList.toggle('show');
-        }
-
-        function changeLanguage() {
-            const langs = ['fr', 'en', 'ar'];
-            const currentIndex = langs.indexOf(currentLang);
-            currentLang = langs[(currentIndex + 1) % langs.length];
-            document.getElementById('current-lang').textContent = currentLang.toUpperCase();
-            showToast(`Langue changée en ${currentLang.toUpperCase()}`, 'success');
         }
 
         function toggleTheme() {
@@ -1208,14 +1669,14 @@
                     <button class="wishlist-icon" onclick="event.stopPropagation(); toggleWishlistItem(${i}, event)">
                         <i class="far fa-heart"></i>
                     </button>
-                    <div class="product-image" style="background-image: url('${p.img}')"></div>
+                    <div class="product-image" style="background-image: url('${p.img}')" onclick="event.stopPropagation(); openZoom('${p.img}')"></div>
                     <div class="product-info">
                         <div class="product-name">${p.name}</div>
                         <div class="product-description">${descriptions[i]}</div>
                         ${p.stock <= 5 ? `<div class="product-stock"><i class="fas fa-fire"></i> Vente rapide - Plus que ${p.stock} disponibles !</div>` : ''}
                         <div class="product-price">${p.price},00 €</div>
-                        <button class="add-to-cart" onclick="event.stopPropagation(); addToCart('${p.name}', ${p.price}, '${p.img}')">
-                            <i class="fas fa-shopping-cart"></i> Ajouter au Panier
+                        <button class="add-to-cart" onclick="event.stopPropagation(); addToCart('${p.name}', ${p.price}, '${p.img}', 1)">
+                            <i class="fas fa-shopping-cart"></i> <span data-i18n="add-to-cart">Ajouter au Panier</span>
                         </button>
                     </div>
                 </div>
@@ -1255,9 +1716,17 @@
             document.getElementById('wishlist-count').style.display = wishlist.length > 0 ? 'flex' : 'none';
         }
 
-        function addToCart(name, price, img) {
-            cart.push({name, price, img});
-            cartTotal += price;
+        function addToCart(name, price, img, quantity = 1) {
+            const existingItemIndex = cart.findIndex(item => item.name === name);
+            
+            if (existingItemIndex !== -1) {
+                cart[existingItemIndex].quantity += quantity;
+                cartTotal += price * quantity;
+            } else {
+                cart.push({name, price, img, quantity});
+                cartTotal += price * quantity;
+            }
+            
             updateCartSidebar();
             toggleCart();
             showToast(`${name} ajouté au panier !`, 'success');
@@ -1266,7 +1735,7 @@
         }
 
         function removeFromCart(index) {
-            cartTotal -= cart[index].price;
+            cartTotal -= cart[index].price * cart[index].quantity;
             const removedItem = cart[index].name;
             cart.splice(index, 1);
             updateCartSidebar();
@@ -1282,7 +1751,7 @@
                 cartDiv.innerHTML = `
                     <div class="cart-empty">
                         <i class="fas fa-shopping-bag"></i>
-                        <p>Votre panier est vide</p>
+                        <p data-i18n="cart-empty">Votre panier est vide</p>
                     </div>
                 `;
                 cartFooter.style.display = 'none';
@@ -1290,12 +1759,17 @@
             } else {
                 cartDiv.innerHTML = cart.map((item, index) => `
                     <div class="cart-item-card">
-                        <div class="cart-item-image" style="background-image: url('${item.img}'); background-size: cover;"></div>
+                        <div class="cart-item-image" style="background-image: url('${item.img}'); background-size: cover;" onclick="openZoom('${item.img}')"></div>
                         <div class="cart-item-details">
                             <div class="cart-item-name">${item.name}</div>
-                            <div class="cart-item-price">${item.price.toFixed(2)} €</div>
+                            <div class="cart-item-price">${item.price.toFixed(2)} € × ${item.quantity}</div>
+                            <div class="cart-item-quantity">
+                                <button class="cart-quantity-btn" onclick="updateCartQuantity(${index}, -1)">-</button>
+                                <span class="cart-quantity-value">${item.quantity}</span>
+                                <button class="cart-quantity-btn" onclick="updateCartQuantity(${index}, 1)">+</button>
+                            </div>
                             <button class="cart-item-remove" onclick="removeFromCart(${index})">
-                                <i class="fas fa-trash"></i> Retirer
+                                <i class="fas fa-trash"></i> <span data-i18n="remove">Retirer</span>
                             </button>
                         </div>
                     </div>
@@ -1322,7 +1796,7 @@
                                 value: cartTotal.toFixed(2),
                                 currency_code: 'EUR'
                             },
-                            description: 'Commande NOUREL - ' + cart.map(item => item.name).join(', ')
+                            description: 'Commande NOUREL - ' + cart.map(item => `${item.name} (×${item.quantity})`).join(', ')
                         }]
                     });
                 },
@@ -1331,7 +1805,6 @@
                         showToast(`✅ Paiement réussi ! Merci ${details.payer.name.given_name} pour votre commande chez NOUREL.`, 'success');
                         createConfetti();
                         
-                        // Réinitialiser le panier après paiement
                         cart = [];
                         cartTotal = 0;
                         updateCartSidebar();
@@ -1353,14 +1826,6 @@
                     height: 45
                 }
             }).render('#paypal-button-container');
-        }
-
-        function proceedToCheckout() {
-            if (cart.length === 0) {
-                showToast('Votre panier est vide', 'error');
-                return;
-            }
-            toggleCart();
         }
 
         function subscribeNewsletter(e) {
@@ -1391,7 +1856,7 @@
             
             avatar.textContent = randomName[0];
             nameEl.textContent = randomName;
-            action.innerHTML = `vient d'acheter <strong>${productName}</strong>`;
+            action.innerHTML = `<span data-i18n="just-bought">vient d'acheter</span> <strong>${productName}</strong>`;
             
             proof.classList.add('show');
             setTimeout(() => proof.classList.remove('show'), 5000);
@@ -1403,20 +1868,16 @@
         renderProducts();
         showWelcomePopup();
 
-        // Show random social proof every 15 seconds
         setInterval(() => {
             const randomProduct = products[Math.floor(Math.random() * products.length)];
             showSocialProof(randomProduct.name);
         }, 15000);
 
-        // Show first social proof after 3 seconds
         setTimeout(() => showSocialProof(products[0].name), 3000);
 
-        // Floating cart button functionality
         document.getElementById('floating-cart').addEventListener('click', () => {
             document.getElementById('collections').scrollIntoView({behavior: 'smooth'});
         });
     </script>
 </body>
-</html>#   N o u r e l  
- 
+</html>
