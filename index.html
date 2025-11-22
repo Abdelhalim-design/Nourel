@@ -2,14 +2,15 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>NOUREL - Voile de Luxe Swarovski | Collection Exclusive</title>
     <meta name="description" content="Découvrez les voiles de luxe NOUREL ornés de cristaux Swarovski authentiques. Qualité premium, livraison gratuite.">
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/DZw9PYz8/Capture-d-cran-2025-01-26-114659-removebg-preview.png">
     <script src="https://www.paypal.com/sdk/js?client-id=AWNMMTn0jbr4jzNwMMrl6DsBmtLhMdhRWif4rZ5u5ErHq_AVYFJQX5w1wSfVfCzEI51pjU1JkCvyIjD7&currency=EUR"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
         body {
             font-family: 'Poppins', 'Helvetica Neue', sans-serif;
             background: #ffffff;
@@ -17,6 +18,7 @@
             line-height: 1.6;
             transition: background-color 0.3s ease, color 0.3s ease;
             overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
         }
         body.dark-mode { background: #0a0a0a; color: #e5e5e5; }
         body.dark-mode .hero { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 50%, #1a1a1a 100%); }
@@ -43,10 +45,8 @@
         @keyframes confetti { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; } }
         @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 50% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
         @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        @keyframes typing { from { width: 0; } to { width: 100%; } }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* Image Zoom Modal */
         .zoom-modal {
             position: fixed;
             top: 0;
@@ -89,27 +89,7 @@
             z-index: 10;
         }
         .zoom-close:hover { background: #c9a961; color: white; transform: rotate(90deg); }
-        .zoom-controls {
-            position: absolute;
-            bottom: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-        }
-        .zoom-btn {
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .zoom-btn:hover { background: #c9a961; color: white; transform: scale(1.1); }
 
-        /* Quantity Selector */
         .quantity-selector {
             display: flex;
             align-items: center;
@@ -149,7 +129,6 @@
         }
         body.dark-mode .quantity-value { color: #e5e5e5; border-color: #3a3a3a; }
         
-        /* Cart Item Quantity */
         .cart-item-quantity {
             display: flex;
             align-items: center;
@@ -175,7 +154,6 @@
         .cart-quantity-value { font-weight: 700; color: #1a1a1a; min-width: 30px; text-align: center; font-size: 14px; }
         body.dark-mode .cart-quantity-value { color: #e5e5e5; }
 
-        /* Countdown Timer */
         .promo-banner {
             background: linear-gradient(135deg, #c9a961 0%, #d4b574 100%);
             color: white;
@@ -198,7 +176,6 @@
         .countdown-number { font-size: 20px; background: rgba(255, 255, 255, 0.2); padding: 5px 10px; border-radius: 4px; min-width: 40px; }
         .countdown-label { font-size: 9px; text-transform: uppercase; margin-top: 2px; }
 
-        /* Welcome Popup */
         .popup-overlay {
             position: fixed;
             top: 0;
@@ -286,7 +263,6 @@
         .popup-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201, 169, 97, 0.4); }
         .popup-footer { text-align: center; padding: 0 40px 30px; font-size: 11px; color: #999; }
 
-        /* Quick View Modal */
         .quick-view-modal {
             background: white;
             max-width: 900px;
@@ -337,7 +313,6 @@
         .quick-view-add { flex: 1; padding: 16px; background: #c9a961; color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
         .quick-view-add:hover { background: #1a1a1a; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201, 169, 97, 0.4); }
 
-        /* Floating Add to Cart */
         .floating-add-cart {
             position: fixed;
             bottom: 30px;
@@ -361,7 +336,6 @@
         .floating-add-cart.show { display: flex; }
         .floating-add-cart:hover { transform: translateY(-5px); box-shadow: 0 15px 50px rgba(201, 169, 97, 0.6); }
 
-        /* Chat Widget */
         .chat-widget {
             position: fixed;
             bottom: 30px;
@@ -450,7 +424,6 @@
         .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
         .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
 
-        /* Progress Bar for Free Shipping */
         .shipping-progress {
             background: #f5f5f5;
             padding: 15px 20px;
@@ -472,7 +445,6 @@
             border-radius: 10px;
         }
 
-        /* Confetti */
         .confetti {
             position: fixed;
             width: 10px;
@@ -482,23 +454,6 @@
             pointer-events: none;
         }
 
-        /* Parallax Effect */
-        .parallax-section {
-            position: relative;
-            overflow: hidden;
-        }
-        .parallax-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 120%;
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.1s ease-out;
-        }
-
-        /* Particles for Hero */
         .particles {
             position: absolute;
             width: 100%;
@@ -520,7 +475,7 @@
         nav {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 25px 80px;
+            padding: 20px 80px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -529,12 +484,62 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            flex-wrap: wrap;
+            gap: 15px;
         }
-        .logo { font-size: 24px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: #1a1a1a; animation: slideInLeft 0.6s ease; }
+        .logo { 
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 24px; 
+            font-weight: 700; 
+            letter-spacing: 4px; 
+            text-transform: uppercase; 
+            color: #1a1a1a; 
+            animation: slideInLeft 0.6s ease; 
+        }
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        .logo-img:hover {
+            transform: scale(1.1);
+        }
         .nav-links { display: flex; gap: 50px; list-style: none; }
         .nav-links a { color: #1a1a1a; text-decoration: none; transition: all 0.3s ease; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; font-weight: 500; position: relative; }
         .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: #c9a961; transition: width 0.3s ease; }
         .nav-links a:hover::after { width: 100%; }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #1a1a1a;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        body.dark-mode .menu-toggle span {
+            background: #e5e5e5;
+        }
+        
         .nav-right { display: flex; gap: 20px; align-items: center; }
         .theme-toggle, .lang-selector { background: transparent; border: 1px solid #e0e0e0; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 12px; transition: all 0.3s ease; color: #1a1a1a; font-weight: 600; letter-spacing: 0.5px; }
         .theme-toggle:hover, .lang-selector:hover { border-color: #c9a961; background: rgba(201, 169, 97, 0.1); }
@@ -790,33 +795,242 @@
         footer { background: #1a1a1a; color: #ffffff; padding: 100px 80px; }
         .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 50px; margin-bottom: 80px; }
         .footer-col h4 { font-size: 13px; font-weight: 700; margin-bottom: 25px; letter-spacing: 1.5px; text-transform: uppercase; color: #ffffff; }
-        .footer-col p, .footer-col a { font-size: 13px; color: #999; margin-bottom: 14px; text-decoration: none; transition: all 0.3s ease; }
+        .footer-col p, .footer-col a { font-size: 13px; color: #999; margin-bottom: 14px; text-decoration: none; transition: all 0.3s ease; display: block; }
         .footer-col a:hover { color: #c9a961; }
         .footer-bottom { border-top: 1px solid #333; padding-top: 40px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #666; }
 
         @media (max-width: 1024px) {
-            nav { padding: 20px 40px; }
+            nav { padding: 18px 40px; }
+            .nav-links { gap: 30px; }
             .products-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
-            .about-section { grid-template-columns: 1fr; padding: 100px 40px; gap: 50px; }
-            .features-grid { grid-template-columns: 1fr; }
+            .about-section { grid-template-columns: 1fr; padding: 80px 40px; gap: 40px; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
             .footer-content { grid-template-columns: repeat(2, 1fr); }
-            .cart-sidebar, .quick-view-modal { width: 380px; right: -380px; }
+            .cart-sidebar, .quick-view-modal { width: 420px; right: -420px; }
+            .hero-content h1 { font-size: 56px; }
+            .section-header h2 { font-size: 44px; }
         }
         @media (max-width: 768px) {
-            .products-grid, .testimonials-grid { grid-template-columns: 1fr; }
-            .hero-content h1 { font-size: 48px; }
-            nav { padding: 15px 20px; }
-            .nav-links { gap: 15px; font-size: 11px; }
-            .about-section, .products-section, .features-section, .testimonials-section { padding: 80px 20px; }
-            .footer-content { grid-template-columns: 1fr; }
+            nav { 
+                padding: 15px 20px;
+            }
+            .logo { 
+                font-size: 18px; 
+                letter-spacing: 2px;
+                gap: 10px;
+                order: 1;
+            }
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+            .menu-toggle {
+                display: flex;
+                order: 2;
+            }
+            .nav-links { 
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                gap: 0;
+                padding: 80px 30px 30px;
+                box-shadow: 5px 0 30px rgba(0, 0, 0, 0.1);
+                transition: left 0.4s ease;
+                z-index: 999;
+            }
+            .nav-links.active {
+                left: 0;
+            }
+            .nav-links li {
+                width: 100%;
+                padding: 15px 0;
+                border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+            }
+            .nav-links a {
+                font-size: 14px;
+                display: block;
+                width: 100%;
+            }
+            body.dark-mode .nav-links {
+                background: rgba(26, 26, 26, 0.98);
+            }
+            .nav-right {
+                gap: 15px;
+                order: 3;
+                margin-left: auto;
+            }
+            .theme-toggle, .lang-selector {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+            .cart-badge, .wishlist-badge {
+                font-size: 20px;
+            }
+            .badge-count {
+                width: 18px;
+                height: 18px;
+                font-size: 10px;
+            }
+            .products-grid, .testimonials-grid { 
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            .hero { height: 85vh; padding: 0 20px; }
+            .hero-content h1 { font-size: 40px; letter-spacing: 3px; }
+            .hero-subtitle { font-size: 15px; }
+            .hero-description { font-size: 13px; }
+            .cta-button { padding: 14px 40px; font-size: 11px; }
+            .about-section, .products-section, .features-section, .testimonials-section { 
+                padding: 60px 20px; 
+            }
+            .about-text h2 { font-size: 36px; }
+            .about-text p { font-size: 14px; }
+            .about-image { height: 350px; }
+            .section-header h2 { font-size: 38px; }
+            .section-header p { font-size: 12px; }
+            .footer-content { grid-template-columns: 1fr; gap: 30px; }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+            .newsletter-section { padding: 60px 20px; }
+            .newsletter-title { font-size: 28px; }
+            .newsletter-subtitle { font-size: 13px; }
             .newsletter-form { flex-direction: column; }
-            .cart-sidebar, .quick-view-modal { width: 100%; right: -100%; }
-            .quick-view-modal { grid-template-columns: 1fr; }
-            .trust-badges { gap: 30px; }
-            .social-proof, .chat-widget { left: 20px; right: 20px; max-width: calc(100% - 40px); }
-            .floating-add-cart { bottom: 20px; right: 20px; }
-            .countdown-timer { font-size: 12px; }
-            .countdown-number { font-size: 16px; }
+            .newsletter-input, .newsletter-btn { width: 100%; }
+            .cart-sidebar, .quick-view-modal { 
+                width: 100%; 
+                right: -100%; 
+            }
+            .quick-view-modal { 
+                grid-template-columns: 1fr;
+                max-height: 90vh;
+            }
+            .quick-view-image { min-height: 280px; }
+            .quick-view-content { padding: 30px 25px; }
+            .quick-view-content h2 { font-size: 24px; }
+            .quick-view-price { font-size: 28px; }
+            .trust-badges { 
+                gap: 25px; 
+                padding: 40px 20px;
+                grid-template-columns: repeat(2, 1fr);
+                display: grid;
+            }
+            .trust-badge i { font-size: 28px; }
+            .trust-badge p { font-size: 11px; }
+            .social-proof { 
+                left: 15px; 
+                right: auto;
+                max-width: calc(100% - 100px);
+                padding: 15px 18px;
+            }
+            .chat-widget { 
+                left: auto;
+                right: 15px;
+                bottom: 20px;
+            }
+            .chat-bubble {
+                padding: 14px 20px;
+                font-size: 13px;
+            }
+            .chat-bubble i { font-size: 18px; }
+            .chat-window {
+                width: calc(100vw - 30px);
+                left: auto;
+                right: 0;
+            }
+            .floating-add-cart { 
+                bottom: 15px; 
+                right: 15px;
+                padding: 14px 25px;
+                font-size: 12px;
+            }
+            .countdown-timer { 
+                font-size: 11px;
+                gap: 12px;
+            }
+            .countdown-number { 
+                font-size: 18px;
+                padding: 5px 10px;
+                min-width: 38px;
+            }
+            .promo-banner {
+                padding: 12px 20px;
+                font-size: 11px;
+                gap: 12px;
+            }
+            .welcome-popup {
+                max-width: 95%;
+                margin: 0 10px;
+            }
+            .popup-header {
+                padding: 40px 30px;
+            }
+            .popup-header h2 { font-size: 26px; }
+            .popup-header p { font-size: 15px; }
+            .popup-discount { font-size: 40px; }
+            .popup-body { padding: 30px; }
+            .product-card:hover {
+                transform: translateY(-5px);
+            }
+            .product-image { height: 300px; }
+            .product-info { padding: 30px 25px; }
+            .product-name { font-size: 15px; }
+            .product-description { font-size: 12px; }
+            .product-price { font-size: 18px; }
+            .filter-search-bar {
+                flex-direction: column;
+                width: 100%;
+                gap: 15px;
+            }
+            .search-box { 
+                max-width: 100%; 
+                width: 100%;
+            }
+            .filter-buttons {
+                justify-content: center;
+                width: 100%;
+            }
+            .testimonial-card { padding: 30px 25px; }
+            .testimonial-text { font-size: 13px; }
+            .features-grid { 
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            .feature-icon { font-size: 42px; }
+            .feature h3 { font-size: 15px; }
+            .feature p { font-size: 12px; }
+        }
+        @media (max-width: 480px) {
+            .logo { 
+                font-size: 16px;
+                gap: 8px;
+            }
+            .logo-img { 
+                width: 35px; 
+                height: 35px; 
+            }
+            .nav-right {
+                gap: 10px;
+            }
+            .theme-toggle, .lang-selector {
+                padding: 7px 12px;
+                font-size: 11px;
+            }
+            .cart-badge, .wishlist-badge {
+                font-size: 18px;
+            }
+            .hero-content h1 { font-size: 32px; }
+            .section-header h2 { font-size: 30px; }
+            .about-text h2 { font-size: 28px; }
+            .trust-badges { grid-template-columns: 1fr; gap: 20px; }
+            .product-image { height: 250px; }
+            .social-proof {
+                max-width: calc(100% - 30px);
+                left: 15px;
+            }
         }
     </style>
 </head>
@@ -915,8 +1129,16 @@
 
     <!-- Navigation -->
     <nav>
-        <div class="logo">NOUREL</div>
-        <ul class="nav-links">
+        <div class="logo">
+            <img src="https://i.postimg.cc/DZw9PYz8/Capture-d-cran-2025-01-26-114659-removebg-preview.png" alt="NOUREL Logo" class="logo-img">
+            <span>NOUREL</span>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links" id="nav-links">
             <li><a href="#about" data-i18n="nav-about">À propos</a></li>
             <li><a href="#collections" data-i18n="nav-collections">Collections</a></li>
             <li><a href="#testimonials" data-i18n="nav-testimonials">Avis</a></li>
@@ -1184,232 +1406,27 @@
         let quickViewQuantity = 1;
         const FREE_SHIPPING_THRESHOLD = 200;
 
-        // Traductions complètes
         const translations = {
             fr: {
                 'promo': 'OFFRE SPÉCIALE : -15% sur votre 1ère commande avec le code',
-                'hours': 'Heures',
-                'minutes': 'Minutes',
-                'seconds': 'Secondes',
-                'welcome-title': 'Bienvenue chez NOUREL !',
-                'welcome-subtitle': 'Votre élégance commence ici',
-                'welcome-discount': 'sur votre première commande',
-                'welcome-text': 'Inscrivez-vous et recevez immédiatement votre code promo exclusif',
-                'email-placeholder': 'Votre adresse email',
-                'get-code': 'Obtenir mon Code Promo',
-                'welcome-footer': 'En vous inscrivant, vous acceptez de recevoir nos offres exclusives',
-                'nav-about': 'À propos',
-                'nav-collections': 'Collections',
-                'nav-testimonials': 'Avis',
-                'nav-contact': 'Contact',
-                'my-cart': 'Mon Panier',
-                'cart-empty': 'Votre panier est vide',
-                'total': 'Total',
-                'continue-shopping': 'Continuer mes Achats',
-                'add-to-cart': 'Ajouter au Panier',
-                'quantity': 'Quantité',
-                'remove': 'Retirer',
-                'feature-swarovski': 'Cristaux Swarovski authentiques',
-                'feature-certificate': "Certificat d'authenticité inclus",
-                'feature-shipping': 'Livraison gratuite et rapide',
-                'feature-guarantee': 'Garantie satisfait ou remboursé 30 jours',
-                'need-help': 'Besoin d\'aide ?',
-                'chat-hello': 'Bonjour ! 👋 Bienvenue chez NOUREL. Comment puis-je vous aider aujourd\'hui ?',
-                'chat-available': 'Je suis disponible pour répondre à toutes vos questions sur nos voiles de luxe !',
-                'just-bought': 'vient d\'acheter',
-                'time-ago': 'Il y a 3 minutes',
-                'hero-subtitle': 'Luxe & Élégance',
-                'hero-description': 'Collection exclusive de voiles ornées de cristaux Swarovski authentiques',
-                'discover-collection': 'Découvrir la Collection',
-                'trust-swarovski': 'CRISTAUX SWAROVSKI',
-                'trust-shipping': 'LIVRAISON GRATUITE',
-                'trust-payment': 'PAIEMENT SÉCURISÉ',
-                'trust-return': 'RETOUR 30 JOURS',
-                'about-title': 'Notre Histoire',
-                'about-text1': 'Nourel est née d\'une passion pour l\'élégance intemporelle et la beauté raffinée. Chaque création est le fruit d\'un savoir-faire artisanal minutieux.',
-                'about-text2': 'Nous sélectionnons les plus beaux matériaux et les cristaux Swarovski de qualité supérieure pour créer des voiles qui transcendent le temps.',
-                'about-text3': 'Véritables œuvres d\'art, nos voiles incarnent le luxe, la sophistication et l\'intemporalité.',
-                'learn-more': 'En Savoir Plus',
-                'section-exclusive': 'Collection Exclusive',
-                'section-creations': 'Nos Créations',
-                'search': 'Rechercher un voile...',
-                'filter-all': 'Tous',
-                'testimonials-label': 'Avis Clients',
-                'testimonials-title': 'Ce qu\'ils disent',
-                'feat-quality-title': 'Qualité Premium',
-                'feat-quality-text': 'Matériaux haut de gamme sélectionnés pour leur durabilité et leur beauté intemporelle.',
-                'feat-delivery-title': 'Livraison Gratuite',
-                'feat-delivery-text': 'Livraison express dans un emballage de prestige à toutes vos commandes.',
-                'feat-guarantee-title': 'Garantie 100%',
-                'feat-guarantee-text': 'Chaque pièce garantie authentique avec certificat d\'authenticité inclus.',
-                'newsletter-title': 'Restez Informé',
-                'newsletter-subtitle': 'Inscrivez-vous pour recevoir nos nouveautés et offres exclusives',
-                'email': 'Votre email',
-                'subscribe': 'S\'inscrire',
-                'footer-about-title': 'À Propos de NOUREL',
-                'footer-about-text': 'Découvrez une sélection exclusive de voiles de luxe ornées de cristaux Swarovski authentiques.',
-                'footer-collections': 'Collections',
-                'footer-exclusive': 'Voiles Exclusives',
-                'footer-limited': 'Éditions Limitées',
-                'footer-new': 'Nouvelles Arrivées',
-                'footer-service': 'Service Client',
-                'footer-return': 'Politique de Retour',
-                'footer-delivery': 'Guide de Livraison',
-                'footer-faq': 'FAQ & Support',
-                'footer-contact': 'Contact',
-                'footer-copyright': '© 2025 NOUREL - Collection Exclusive. Tous droits réservés.',
-                'footer-legal': 'Mentions Légales',
-                'footer-privacy': 'Politique de Confidentialité'
+                'hours': 'Heures', 'minutes': 'Minutes', 'seconds': 'Secondes',
+                'welcome-title': 'Bienvenue chez NOUREL !', 'welcome-subtitle': 'Votre élégance commence ici',
+                'welcome-discount': 'sur votre première commande', 'email-placeholder': 'Votre adresse email',
+                'get-code': 'Obtenir mon Code Promo', 'nav-about': 'À propos', 'nav-collections': 'Collections',
+                'nav-testimonials': 'Avis', 'nav-contact': 'Contact', 'my-cart': 'Mon Panier',
+                'cart-empty': 'Votre panier est vide', 'total': 'Total', 'continue-shopping': 'Continuer mes Achats',
+                'add-to-cart': 'Ajouter au Panier', 'quantity': 'Quantité', 'remove': 'Retirer'
             },
             en: {
                 'promo': 'SPECIAL OFFER: -15% on your 1st order with code',
-                'hours': 'Hours',
-                'minutes': 'Minutes',
-                'seconds': 'Seconds',
-                'welcome-title': 'Welcome to NOUREL!',
-                'welcome-subtitle': 'Your elegance starts here',
-                'welcome-discount': 'on your first order',
-                'welcome-text': 'Sign up and receive your exclusive promo code immediately',
-                'email-placeholder': 'Your email address',
-                'get-code': 'Get My Promo Code',
-                'welcome-footer': 'By signing up, you agree to receive our exclusive offers',
-                'nav-about': 'About',
-                'nav-collections': 'Collections',
-                'nav-testimonials': 'Reviews',
-                'nav-contact': 'Contact',
-                'my-cart': 'My Cart',
-                'cart-empty': 'Your cart is empty',
-                'total': 'Total',
-                'continue-shopping': 'Continue Shopping',
-                'add-to-cart': 'Add to Cart',
-                'quantity': 'Quantity',
-                'remove': 'Remove',
-                'feature-swarovski': 'Authentic Swarovski crystals',
-                'feature-certificate': 'Certificate of authenticity included',
-                'feature-shipping': 'Free and fast delivery',
-                'feature-guarantee': '30-day satisfaction guarantee',
-                'need-help': 'Need help?',
-                'chat-hello': 'Hello! 👋 Welcome to NOUREL. How can I help you today?',
-                'chat-available': 'I\'m available to answer all your questions about our luxury veils!',
-                'just-bought': 'just purchased',
-                'time-ago': '3 minutes ago',
-                'hero-subtitle': 'Luxury & Elegance',
-                'hero-description': 'Exclusive collection of veils adorned with authentic Swarovski crystals',
-                'discover-collection': 'Discover the Collection',
-                'trust-swarovski': 'SWAROVSKI CRYSTALS',
-                'trust-shipping': 'FREE SHIPPING',
-                'trust-payment': 'SECURE PAYMENT',
-                'trust-return': '30 DAY RETURN',
-                'about-title': 'Our Story',
-                'about-text1': 'Nourel was born from a passion for timeless elegance and refined beauty. Each creation is the result of meticulous artisan craftsmanship.',
-                'about-text2': 'We select the finest materials and premium Swarovski crystals to create veils that transcend time.',
-                'about-text3': 'True works of art, our veils embody luxury, sophistication and timelessness.',
-                'learn-more': 'Learn More',
-                'section-exclusive': 'Exclusive Collection',
-                'section-creations': 'Our Creations',
-                'search': 'Search for a veil...',
-                'filter-all': 'All',
-                'testimonials-label': 'Customer Reviews',
-                'testimonials-title': 'What they say',
-                'feat-quality-title': 'Premium Quality',
-                'feat-quality-text': 'High-end materials selected for their durability and timeless beauty.',
-                'feat-delivery-title': 'Free Delivery',
-                'feat-delivery-text': 'Express delivery in prestigious packaging for all your orders.',
-                'feat-guarantee-title': '100% Guarantee',
-                'feat-guarantee-text': 'Each piece guaranteed authentic with certificate of authenticity included.',
-                'newsletter-title': 'Stay Informed',
-                'newsletter-subtitle': 'Subscribe to receive our news and exclusive offers',
-                'email': 'Your email',
-                'subscribe': 'Subscribe',
-                'footer-about-title': 'About NOUREL',
-                'footer-about-text': 'Discover an exclusive selection of luxury veils adorned with authentic Swarovski crystals.',
-                'footer-collections': 'Collections',
-                'footer-exclusive': 'Exclusive Veils',
-                'footer-limited': 'Limited Editions',
-                'footer-new': 'New Arrivals',
-                'footer-service': 'Customer Service',
-                'footer-return': 'Return Policy',
-                'footer-delivery': 'Delivery Guide',
-                'footer-faq': 'FAQ & Support',
-                'footer-contact': 'Contact',
-                'footer-copyright': '© 2025 NOUREL - Exclusive Collection. All rights reserved.',
-                'footer-legal': 'Legal Notice',
-                'footer-privacy': 'Privacy Policy'
+                'hours': 'Hours', 'minutes': 'Minutes', 'seconds': 'Seconds',
+                'my-cart': 'My Cart', 'cart-empty': 'Your cart is empty', 'total': 'Total',
+                'add-to-cart': 'Add to Cart', 'quantity': 'Quantity'
             },
             ar: {
                 'promo': 'عرض خاص: خصم 15% على طلبك الأول بالرمز',
-                'hours': 'ساعات',
-                'minutes': 'دقائق',
-                'seconds': 'ثواني',
-                'welcome-title': 'مرحباً بك في نوريل!',
-                'welcome-subtitle': 'أناقتك تبدأ هنا',
-                'welcome-discount': 'على طلبك الأول',
-                'welcome-text': 'سجل واحصل على رمز الخصم الحصري فوراً',
-                'email-placeholder': 'بريدك الإلكتروني',
-                'get-code': 'احصل على رمز الخصم',
-                'welcome-footer': 'بالتسجيل، أنت توافق على تلقي عروضنا الحصرية',
-                'nav-about': 'من نحن',
-                'nav-collections': 'المجموعات',
-                'nav-testimonials': 'الآراء',
-                'nav-contact': 'اتصل بنا',
-                'my-cart': 'سلتي',
-                'cart-empty': 'سلتك فارغة',
-                'total': 'المجموع',
-                'continue-shopping': 'متابعة التسوق',
-                'add-to-cart': 'أضف للسلة',
-                'quantity': 'الكمية',
-                'remove': 'إزالة',
-                'feature-swarovski': 'كريستالات سواروفسكي أصلية',
-                'feature-certificate': 'شهادة أصالة مرفقة',
-                'feature-shipping': 'توصيل مجاني وسريع',
-                'feature-guarantee': 'ضمان استرداد المال لمدة 30 يوم',
-                'need-help': 'تحتاج مساعدة؟',
-                'chat-hello': 'مرحباً! 👋 أهلاً بك في نوريل. كيف يمكنني مساعدتك اليوم؟',
-                'chat-available': 'أنا متاح للإجابة على جميع أسئلتك حول حجابنا الفاخر!',
-                'just-bought': 'اشترى للتو',
-                'time-ago': 'منذ 3 دقائق',
-                'hero-subtitle': 'الفخامة والأناقة',
-                'hero-description': 'مجموعة حصرية من الحجاب المزين بكريستالات سواروفسكي الأصلية',
-                'discover-collection': 'اكتشف المجموعة',
-                'trust-swarovski': 'كريستالات سواروفسكي',
-                'trust-shipping': 'شحن مجاني',
-                'trust-payment': 'دفع آمن',
-                'trust-return': 'إرجاع 30 يوم',
-                'about-title': 'قصتنا',
-                'about-text1': 'ولدت نوريل من شغف بالأناقة الخالدة والجمال المتقن. كل إبداع هو نتيجة حرفية يدوية دقيقة.',
-                'about-text2': 'نختار أفضل المواد وكريستالات سواروفسكي الفاخرة لإنشاء حجاب يتجاوز الزمن.',
-                'about-text3': 'أعمال فنية حقيقية، حجابنا يجسد الفخامة والرقي والأبدية.',
-                'learn-more': 'اعرف المزيد',
-                'section-exclusive': 'مجموعة حصرية',
-                'section-creations': 'إبداعاتنا',
-                'search': 'ابحث عن حجاب...',
-                'filter-all': 'الكل',
-                'testimonials-label': 'آراء العملاء',
-                'testimonials-title': 'ماذا يقولون',
-                'feat-quality-title': 'جودة فاخرة',
-                'feat-quality-text': 'مواد عالية الجودة مختارة لمتانتها وجمالها الخالد.',
-                'feat-delivery-title': 'توصيل مجاني',
-                'feat-delivery-text': 'توصيل سريع في تغليف فاخر لجميع طلباتك.',
-                'feat-guarantee-title': 'ضمان 100%',
-                'feat-guarantee-text': 'كل قطعة مضمونة أصلية مع شهادة أصالة مرفقة.',
-                'newsletter-title': 'ابق على اطلاع',
-                'newsletter-subtitle': 'اشترك لتلقي أخبارنا وعروضنا الحصرية',
-                'email': 'بريدك الإلكتروني',
-                'subscribe': 'اشترك',
-                'footer-about-title': 'عن نوريل',
-                'footer-about-text': 'اكتشف مجموعة حصرية من الحجاب الفاخر المزين بكريستالات سواروفسكي الأصلية.',
-                'footer-collections': 'المجموعات',
-                'footer-exclusive': 'حجاب حصري',
-                'footer-limited': 'إصدارات محدودة',
-                'footer-new': 'وصل حديثاً',
-                'footer-service': 'خدمة العملاء',
-                'footer-return': 'سياسة الإرجاع',
-                'footer-delivery': 'دليل التوصيل',
-                'footer-faq': 'الأسئلة الشائعة',
-                'footer-contact': 'اتصل بنا',
-                'footer-copyright': '© 2025 نوريل - مجموعة حصرية. جميع الحقوق محفوظة.',
-                'footer-legal': 'إشعار قانوني',
-                'footer-privacy': 'سياسة الخصوصية'
+                'hours': 'ساعات', 'minutes': 'دقائق', 'seconds': 'ثواني',
+                'my-cart': 'سلتي', 'cart-empty': 'سلتك فارغة', 'total': 'المجموع'
             }
         };
 
@@ -1431,7 +1448,6 @@
             "Collection signature avec cristaux premium écru et or. Le summum du luxe."
         ];
 
-        // Image Zoom Functions
         function openZoom(imageSrc) {
             document.getElementById('zoom-image').src = imageSrc;
             document.getElementById('zoom-modal').classList.add('show');
@@ -1449,7 +1465,6 @@
             openZoom(imageUrl);
         }
 
-        // Quantity Management
         function updateQuickViewQuantity(change) {
             quickViewQuantity = Math.max(1, Math.min(10, quickViewQuantity + change));
             document.getElementById('qv-quantity').textContent = quickViewQuantity;
@@ -1463,55 +1478,35 @@
             updateCartSidebar();
         }
 
-        // Language Translation
         function changeLanguage() {
             const langs = ['fr', 'en', 'ar'];
             const currentIndex = langs.indexOf(currentLang);
             currentLang = langs[(currentIndex + 1) % langs.length];
             document.getElementById('current-lang').textContent = currentLang.toUpperCase();
-            
-            if (currentLang === 'ar') {
-                document.body.style.direction = 'rtl';
-            } else {
-                document.body.style.direction = 'ltr';
-            }
+            document.body.style.direction = currentLang === 'ar' ? 'rtl' : 'ltr';
             
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[currentLang][key]) {
-                    el.textContent = translations[currentLang][key];
-                }
+                if (translations[currentLang][key]) el.textContent = translations[currentLang][key];
             });
             
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-i18n-placeholder');
-                if (translations[currentLang][key]) {
-                    el.placeholder = translations[currentLang][key];
-                }
-            });
-            
-            showToast(`${currentLang === 'fr' ? 'Langue' : currentLang === 'en' ? 'Language' : 'اللغة'}: ${currentLang.toUpperCase()}`, 'success');
+            showToast(`Langue: ${currentLang.toUpperCase()}`, 'success');
         }
 
-        // Countdown Timer
         function startCountdown() {
             const endTime = new Date().getTime() + (24 * 60 * 60 * 1000);
-            
             setInterval(() => {
                 const now = new Date().getTime();
                 const distance = endTime - now;
-                
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                
                 document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
                 document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
                 document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
             }, 1000);
         }
 
-        // Create Particles
         function createParticles() {
             const container = document.getElementById('particles');
             for (let i = 0; i < 30; i++) {
@@ -1525,11 +1520,8 @@
             }
         }
 
-        // Welcome Popup
         function showWelcomePopup() {
-            setTimeout(() => {
-                document.getElementById('welcome-popup').classList.add('show');
-            }, 3000);
+            setTimeout(() => document.getElementById('welcome-popup').classList.add('show'), 3000);
         }
 
         function closeWelcomePopup() {
@@ -1544,7 +1536,6 @@
             closeWelcomePopup();
         }
 
-        // Quick View
         function openQuickView(product, description) {
             currentQuickViewProduct = product;
             quickViewQuantity = 1;
@@ -1564,18 +1555,14 @@
             if (currentQuickViewProduct) {
                 addToCart(currentQuickViewProduct.name, currentQuickViewProduct.price, currentQuickViewProduct.img, quickViewQuantity);
                 quickViewQuantity = 1;
-                document.getElementById('qv-quantity').textContent = '1';
                 closeQuickView();
             }
         }
 
-        // Chat
         function toggleChat() {
-            const chatWindow = document.getElementById('chat-window');
-            chatWindow.classList.toggle('show');
+            document.getElementById('chat-window').classList.toggle('show');
         }
 
-        // Confetti Effect
         function createConfetti() {
             const colors = ['#c9a961', '#d4b574', '#ff6b6b', '#10b981'];
             for (let i = 0; i < 50; i++) {
@@ -1584,70 +1571,37 @@
                     confetti.className = 'confetti';
                     confetti.style.left = Math.random() * 100 + 'vw';
                     confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
                     document.body.appendChild(confetti);
                     setTimeout(() => confetti.remove(), 3000);
                 }, i * 30);
             }
         }
 
-        // Update Shipping Progress
         function updateShippingProgress() {
             const remaining = FREE_SHIPPING_THRESHOLD - cartTotal;
             const progressPercent = Math.min((cartTotal / FREE_SHIPPING_THRESHOLD) * 100, 100);
-            
             const progressBar = document.getElementById('progress-bar');
             const progressText = document.getElementById('progress-text');
-            
             if (progressBar && progressText) {
                 progressBar.style.width = progressPercent + '%';
-                
                 if (remaining > 0) {
                     progressText.innerHTML = `<i class="fas fa-truck"></i> Plus que <strong>${remaining.toFixed(2)}€</strong> pour la livraison gratuite !`;
                 } else {
-                    progressText.innerHTML = `<i class="fas fa-check-circle"></i> <strong>Félicitations !</strong> Vous bénéficiez de la livraison gratuite 🎉`;
+                    progressText.innerHTML = `<i class="fas fa-check-circle"></i> <strong>Félicitations !</strong> Livraison gratuite 🎉`;
                 }
             }
         }
 
-        // Parallax Effect
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.about-image');
-            parallaxElements.forEach(el => {
-                const speed = 0.5;
-                el.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-
-            const productsSection = document.getElementById('collections');
-            if (productsSection) {
-                const rect = productsSection.getBoundingClientRect();
-                const floatingCart = document.getElementById('floating-cart');
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    floatingCart.classList.add('show');
-                } else {
-                    floatingCart.classList.remove('show');
-                }
-            }
-        });
-
         function toggleCart() {
-            const sidebar = document.querySelector('.cart-sidebar');
-            const overlay = document.querySelector('.cart-overlay');
-            sidebar.classList.toggle('open');
-            overlay.classList.toggle('show');
+            document.querySelector('.cart-sidebar').classList.toggle('open');
+            document.querySelector('.cart-overlay').classList.toggle('show');
         }
 
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             const icon = document.getElementById('theme-icon');
-            if (document.body.classList.contains('dark-mode')) {
-                icon.className = 'fas fa-sun';
-                showToast('Mode sombre activé', 'success');
-            } else {
-                icon.className = 'fas fa-moon';
-                showToast('Mode clair activé', 'success');
-            }
+            icon.className = document.body.classList.contains('dark-mode') ? 'fas fa-sun' : 'fas fa-moon';
+            showToast(document.body.classList.contains('dark-mode') ? 'Mode sombre activé' : 'Mode clair activé', 'success');
         }
 
         function renderProducts(filter = 'all', search = '') {
@@ -1676,7 +1630,7 @@
                         ${p.stock <= 5 ? `<div class="product-stock"><i class="fas fa-fire"></i> Vente rapide - Plus que ${p.stock} disponibles !</div>` : ''}
                         <div class="product-price">${p.price},00 €</div>
                         <button class="add-to-cart" onclick="event.stopPropagation(); addToCart('${p.name}', ${p.price}, '${p.img}', 1)">
-                            <i class="fas fa-shopping-cart"></i> <span data-i18n="add-to-cart">Ajouter au Panier</span>
+                            <i class="fas fa-shopping-cart"></i> Ajouter au Panier
                         </button>
                     </div>
                 </div>
@@ -1718,7 +1672,6 @@
 
         function addToCart(name, price, img, quantity = 1) {
             const existingItemIndex = cart.findIndex(item => item.name === name);
-            
             if (existingItemIndex !== -1) {
                 cart[existingItemIndex].quantity += quantity;
                 cartTotal += price * quantity;
@@ -1726,7 +1679,6 @@
                 cart.push({name, price, img, quantity});
                 cartTotal += price * quantity;
             }
-            
             updateCartSidebar();
             toggleCart();
             showToast(`${name} ajouté au panier !`, 'success');
@@ -1746,14 +1698,8 @@
             const cartDiv = document.getElementById('cart-items-sidebar');
             const cartFooter = document.getElementById('cart-footer');
             const cartCount = document.getElementById('cart-count');
-
             if (cart.length === 0) {
-                cartDiv.innerHTML = `
-                    <div class="cart-empty">
-                        <i class="fas fa-shopping-bag"></i>
-                        <p data-i18n="cart-empty">Votre panier est vide</p>
-                    </div>
-                `;
+                cartDiv.innerHTML = `<div class="cart-empty"><i class="fas fa-shopping-bag"></i><p>Votre panier est vide</p></div>`;
                 cartFooter.style.display = 'none';
                 cartCount.style.display = 'none';
             } else {
@@ -1768,13 +1714,10 @@
                                 <span class="cart-quantity-value">${item.quantity}</span>
                                 <button class="cart-quantity-btn" onclick="updateCartQuantity(${index}, 1)">+</button>
                             </div>
-                            <button class="cart-item-remove" onclick="removeFromCart(${index})">
-                                <i class="fas fa-trash"></i> <span data-i18n="remove">Retirer</span>
-                            </button>
+                            <button class="cart-item-remove" onclick="removeFromCart(${index})"><i class="fas fa-trash"></i> Retirer</button>
                         </div>
                     </div>
                 `).join('');
-                
                 cartFooter.style.display = 'block';
                 document.getElementById('cart-total-amount').textContent = cartTotal.toFixed(2) + ' €';
                 cartCount.textContent = cart.length;
@@ -1787,44 +1730,29 @@
         function renderPayPalButton() {
             const container = document.getElementById('paypal-button-container');
             container.innerHTML = '';
-            
             paypal.Buttons({
                 createOrder: function(data, actions) {
                     return actions.order.create({
                         purchase_units: [{
-                            amount: {
-                                value: cartTotal.toFixed(2),
-                                currency_code: 'EUR'
-                            },
+                            amount: { value: cartTotal.toFixed(2), currency_code: 'EUR' },
                             description: 'Commande NOUREL - ' + cart.map(item => `${item.name} (×${item.quantity})`).join(', ')
                         }]
                     });
                 },
                 onApprove: function(data, actions) {
                     return actions.order.capture().then(function(details) {
-                        showToast(`✅ Paiement réussi ! Merci ${details.payer.name.given_name} pour votre commande chez NOUREL.`, 'success');
+                        showToast(`✅ Paiement réussi ! Merci ${details.payer.name.given_name}`, 'success');
                         createConfetti();
-                        
                         cart = [];
                         cartTotal = 0;
                         updateCartSidebar();
-                        
-                        setTimeout(() => {
-                            alert(`🎉 Commande confirmée !\n\nMerci ${details.payer.name.given_name} !\n\nVous recevrez un email de confirmation sous peu.\n\nNuméro de transaction: ${details.id}`);
-                        }, 1000);
+                        setTimeout(() => alert(`🎉 Commande confirmée !\n\nMerci ${details.payer.name.given_name} !\n\nTransaction: ${details.id}`), 1000);
                     });
                 },
                 onError: function(err) {
-                    showToast('❌ Une erreur est survenue lors du paiement. Veuillez réessayer.', 'error');
-                    console.error('Erreur PayPal:', err);
+                    showToast('❌ Erreur de paiement', 'error');
                 },
-                style: {
-                    layout: 'vertical',
-                    color: 'gold',
-                    shape: 'rect',
-                    label: 'paypal',
-                    height: 45
-                }
+                style: { layout: 'vertical', color: 'gold', shape: 'rect', height: 45 }
             }).render('#paypal-button-container');
         }
 
@@ -1838,10 +1766,7 @@
         function showToast(message, type = 'success') {
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
-            toast.innerHTML = `
-                <span class="toast-icon">${type === 'success' ? '✓' : '✕'}</span>
-                <span class="toast-message">${message}</span>
-            `;
+            toast.innerHTML = `<span class="toast-icon">${type === 'success' ? '✓' : '✕'}</span><span class="toast-message">${message}</span>`;
             document.body.appendChild(toast);
             setTimeout(() => toast.remove(), 3000);
         }
@@ -1850,23 +1775,41 @@
             const names = ['Sarah M.', 'Amina K.', 'Fatima L.', 'Leila B.', 'Nadia R.'];
             const randomName = names[Math.floor(Math.random() * names.length)];
             const proof = document.getElementById('social-proof');
-            const avatar = proof.querySelector('.social-proof-avatar');
-            const nameEl = proof.querySelector('.social-proof-name');
-            const action = proof.querySelector('.social-proof-action');
-            
-            avatar.textContent = randomName[0];
-            nameEl.textContent = randomName;
-            action.innerHTML = `<span data-i18n="just-bought">vient d'acheter</span> <strong>${productName}</strong>`;
-            
+            proof.querySelector('.social-proof-avatar').textContent = randomName[0];
+            proof.querySelector('.social-proof-name').textContent = randomName;
+            proof.querySelector('.social-proof-action').innerHTML = `vient d'acheter <strong>${productName}</strong>`;
             proof.classList.add('show');
             setTimeout(() => proof.classList.remove('show'), 5000);
         }
 
-        // Initialize everything
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
         startCountdown();
         createParticles();
         renderProducts();
         showWelcomePopup();
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-links').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            const navLinks = document.getElementById('nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+            if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
 
         setInterval(() => {
             const randomProduct = products[Math.floor(Math.random() * products.length)];
@@ -1877,6 +1820,19 @@
 
         document.getElementById('floating-cart').addEventListener('click', () => {
             document.getElementById('collections').scrollIntoView({behavior: 'smooth'});
+        });
+
+        window.addEventListener('scroll', () => {
+            const productsSection = document.getElementById('collections');
+            if (productsSection) {
+                const rect = productsSection.getBoundingClientRect();
+                const floatingCart = document.getElementById('floating-cart');
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    floatingCart.classList.add('show');
+                } else {
+                    floatingCart.classList.remove('show');
+                }
+            }
         });
     </script>
 </body>
